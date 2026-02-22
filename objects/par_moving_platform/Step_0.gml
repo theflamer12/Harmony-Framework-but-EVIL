@@ -23,12 +23,14 @@
 		for(var i = 0; i < ds_list_size(attached_list); i++){
 			with(attached_list[| i])
 			{
-				if(attached) {
+				if variable_instance_exists(self, "attached") {
 					x = other.xstart - attach_offset_x;
 					y = other.ystart - attach_offset_y;
 					show_debug_message("{0} : {1}",x , y)
 					show_debug_message("{0} : {1}",other.x , other.y)
 					show_debug_message("{0} : {1}",round(other.x - old_x) , round(other.y - old_y))
+				} else {
+					show_debug_message("attached variable not found, falling case {0}", id)	
 				}
 			}
 		}
@@ -89,21 +91,25 @@
 		{
 			with(attached_list[| i])
 			{
-
-					if(attached && other.fall_timer > 0 && other.fall_timer != 61)
-					{
-						if object_get_parent(object_index) != par_moving_platform {
-							x += round(other.x - old_x);
-							y += round(other.y - old_y);
-						} else {
-							origin_x += round(other.x - old_x);
-							origin_y += round(other.y - old_y);
+					if variable_instance_exists(self, "attached") {
+						if(attached && other.fall_timer > 0 && other.fall_timer != 61)
+						{
+							if object_get_parent(object_index) != par_moving_platform {
+								x += round(other.x - old_x);
+								y += round(other.y - old_y);
+							} else {
+								origin_x += round(other.x - old_x);
+								origin_y += round(other.y - old_y);
+							}
 						}
-					}
 					
-					if (object_get_parent(object_index) = par_badnik && other.fall_timer = 0) {
-							attached = false;
-							ds_list_delete(other.attached_list, i);
+						if (object_get_parent(object_index) = par_badnik && other.fall_timer = 0) {
+								attached = false;
+								ds_list_delete(other.attached_list, i);
+						}
+					} else {
+						show_debug_message("attached variable not found, moving case. deleting {0} from list", id)	
+						ds_list_delete(other.attached_list, i);	
 					}
 			}
 		}
