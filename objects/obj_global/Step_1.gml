@@ -20,5 +20,4 @@
 		{
 		    instance_activate_object(ignore_objects[i])
 		}
-		
 	}

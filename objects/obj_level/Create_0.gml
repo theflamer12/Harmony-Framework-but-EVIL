@@ -2,8 +2,8 @@
 
 	disable_timer = false;
 	badnik_chain = 0;
-	scattered_emerald_shards = false
-	emerald_array = []
+	scattered_emerald_shards = false;
+	emerald_array = [];
 	
 	//====================================================//
 	//				 **DEFAULT STAGE SETUP**			  //
@@ -33,4 +33,4 @@
 	next_level = room;
 	
 	//Setup red rings
-	red_ring_count = 0
+	red_ring_count = 0;
