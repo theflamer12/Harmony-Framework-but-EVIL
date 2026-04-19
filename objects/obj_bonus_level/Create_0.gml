@@ -12,3 +12,4 @@
 	red_ring_count = 0;
 	is_emerald_hunt = false;
 	
+	camera_facing = 1;

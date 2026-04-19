@@ -54,6 +54,7 @@
 		
 		if (star_timer > 60 && obj_player.x > x-xoffset && obj_player.x < x+xoffset && obj_player.y > y-yoffset-star_ydiff+6 && obj_player.y < y+yoffset-star_ydiff+6)
 		{
-			global.bonus_stage_state = BONUSSTAGE.GOING_TO
+			global.bonus_stage_state = BONUSSTAGE.GOING_TO;
+			global.bonus_stage_type = BONUSTYPE.SLOT_MACHINE;
 		}
 	}

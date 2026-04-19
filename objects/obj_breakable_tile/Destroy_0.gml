@@ -30,8 +30,8 @@
 	//Get position only for the breakable floor
 	if(breakable_type >= 1)
 	{
-		var startX	= x + (sprite_width / 2);
-		var startY	= bbox_bottom;
+		startX	= x + (sprite_width / 2);
+		startY	= bbox_bottom;
 	}
 		
 	var curY = endY - startY;

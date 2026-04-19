@@ -20,7 +20,3 @@ GUMBALL.FLAME,GUMBALL.FLAME,
 GUMBALL.ELECTRIC,GUMBALL.ELECTRIC,
 GUMBALL.ONEUP,GUMBALL.REPOSITION
 ];
-
-lid = instance_create_depth(x,y,depth - 2, obj_gumball_lid);
-lid.image_speed = 0;
-handle = instance_create_depth(x,y,depth - 3, obj_gumball_handle);

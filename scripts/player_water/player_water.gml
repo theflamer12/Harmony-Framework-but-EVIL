@@ -97,42 +97,46 @@ function player_water(){
 		x_speed = 0
 		y_speed = 0
 	}
+	
+	var drown_bubble = noone;
+	
 	//Create the countdown
-	switch(air){
+	switch(air)
+	{
 		case 20*60:
-			var drown_bubble = instance_create_depth(x+6*facing, y-4, depth-10, obj_drown_bubble);
+			drown_bubble = instance_create_depth(x+6*facing, y-4, depth-10, obj_drown_bubble);
 			drown_bubble.animation = spr_bubble_number_5;
 			drown_bubble.angle = facing == -1 ? 180 : 0;
-			break;
+		break;
 				
 		case 22*60:
-			var drown_bubble = instance_create_depth(x+6*facing, y-4, depth-10, obj_drown_bubble);
+			drown_bubble = instance_create_depth(x+6*facing, y-4, depth-10, obj_drown_bubble);
 			drown_bubble.animation = spr_bubble_number_4;
 			drown_bubble.angle = facing == -1 ? 180 : 0;
-			break;	
+		break;	
 				
 		case 24*60:
-			var drown_bubble = instance_create_depth(x+6*facing, y-4, depth-10, obj_drown_bubble);
+			drown_bubble = instance_create_depth(x+6*facing, y-4, depth-10, obj_drown_bubble);
 			drown_bubble.animation = spr_bubble_number_3;
 			drown_bubble.angle = facing == -1 ? 180 : 0;
-			break;	
+		break;	
 				
 		case 26*60:
-			var drown_bubble = instance_create_depth(x+6*facing, y-4, depth-10, obj_drown_bubble);
+			drown_bubble = instance_create_depth(x+6*facing, y-4, depth-10, obj_drown_bubble);
 			drown_bubble.animation = spr_bubble_number_2;
 			drown_bubble.angle = facing == -1 ? 180 : 0;
-			break;	
+		break;	
 				
 		case 28*60:
-			var drown_bubble = instance_create_depth(x+6*facing, y-4, depth-10, obj_drown_bubble);
+			drown_bubble = instance_create_depth(x+6*facing, y-4, depth-10, obj_drown_bubble);
 			drown_bubble.animation = spr_bubble_number_1;
 			drown_bubble.angle = facing == -1 ? 180 : 0;
-			break;
+		break;
 				
 		case 30*60:
-			var drown_bubble = instance_create_depth(x+6*facing, y-4, depth-10, obj_drown_bubble);
+			drown_bubble = instance_create_depth(x+6*facing, y-4, depth-10, obj_drown_bubble);
 			drown_bubble.animation = spr_bubble_number_0;
 			drown_bubble.angle = facing == -1 ? 180 : 0;
-			break;	
+		break;	
 	}
 }

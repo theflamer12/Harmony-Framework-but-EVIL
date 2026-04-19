@@ -1,5 +1,5 @@
 /// @description Change window size
-	if(!global.dev_mode) exit;
+	//if(!global.dev_mode) exit;  Kill yourself
 	
 	//Change the value and modulate it
 	global.window_size += 1;

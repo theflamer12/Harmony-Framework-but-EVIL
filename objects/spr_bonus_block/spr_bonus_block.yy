@@ -1,17 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"obj_gumball_lid",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"spr_bonus_block",
+  "eventList":[],
   "managed":true,
-  "name":"obj_gumball_lid",
+  "name":"spr_bonus_block",
   "overriddenProperties":[],
   "parent":{
     "name":"Bonus Stage",
     "path":"folders/Objects/Stage Objects/Bonus Stage.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"par_solid_object",
+    "path":"objects/par_solid_object/par_solid_object.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -30,8 +31,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_machine_lid",
-    "path":"sprites/spr_machine_lid/spr_machine_lid.yy",
+    "name":"spr_slot_block",
+    "path":"sprites/spr_slot_block/spr_slot_block.yy",
   },
   "spriteMaskId":null,
   "visible":true,

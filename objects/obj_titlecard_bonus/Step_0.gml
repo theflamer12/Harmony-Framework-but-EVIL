@@ -22,8 +22,6 @@
 	//Add title card timer
 	timer++;
 	
-	
-	
 	if(timer < 90)
 	{
 		var curve = animcurve_get(curve_titlecard_bonus)
@@ -49,26 +47,42 @@
 		offset[3] = (animcurve_channel_evaluate(c_channel_2, min((timer-90) / 40,1)) * (WINDOW_WIDTH *2))
 	}
 	
-	//freeze player while running titlecard
-	if(timer <= 130)
+	switch(global.bonus_stage_type)
 	{
-		obj_player.visible = false
-		if (instance_exists(par_shield)) {
-			par_shield.visible = false
-		}
-		obj_player.x_speed = 0
-		obj_player.y_speed = 0
-		obj_player.y = obj_player.ystart
-		obj_player.state = player_state_spring
-	}
-	//launch player up
-	if (timer = 130) {
-		obj_player.visible = true
-		if (instance_exists(par_shield)) {
-			par_shield.visible = true
-		}
-		obj_player.x_speed = 0
-		obj_player.y_speed = -10
+		case BONUSTYPE.GUMBALL:
+			//freeze player while running titlecard
+			if(timer <= 130)
+			{
+				obj_player.visible = false
+				if (instance_exists(par_shield)) {
+					par_shield.visible = false
+				}
+				obj_player.x_speed = 0
+				obj_player.y_speed = 0
+				obj_player.y = obj_player.ystart
+				obj_player.state = player_state_spring
+			}
+	
+			//launch player up
+			if(timer = 130)
+			{
+				obj_player.visible = true;
+				
+				if(instance_exists(par_shield)) 
+				{
+					par_shield.visible = true;
+				}
+				
+				obj_player.x_speed = 0;
+				obj_player.y_speed = -10;
+			}
+			
+			if(!global.title_card)
+			{
+				obj_player.visible = true;
+				obj_player.y -= 80;
+			}
+		break;
 	}
 	
 	//Enable flags

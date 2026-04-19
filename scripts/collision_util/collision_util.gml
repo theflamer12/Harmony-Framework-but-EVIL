@@ -75,7 +75,6 @@ function collision_point_check(radius_x, radius_y, collision_mode = CMODE_FLOOR,
 					//Full solid:
 					case 0:
 						return true;
-					break;
 					
 					//Semi solid:
 					case 1:
@@ -177,7 +176,6 @@ function collision_line_check(radius_x, radius_y, collision_mode = CMODE_FLOOR, 
 					//Full solid:
 					case 0:
 						return true;
-					break;
 					
 					//Semi solid:
 					case 1:
@@ -270,7 +268,6 @@ function collision_instance(offset_x, offset_y, collision_plane = PLANE_A, semi_
 					//Full solid:
 					case 0:
 						return true;
-					break;
 					
 					//Semi solid:
 					case 1:

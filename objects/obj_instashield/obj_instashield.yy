@@ -1,15 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"obj_gumball_handle",
+  "%Name":"obj_instashield",
   "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":2,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_gumball_handle",
+  "name":"obj_instashield",
   "overriddenProperties":[],
   "parent":{
-    "name":"Bonus Stage",
-    "path":"folders/Objects/Stage Objects/Bonus Stage.yy",
+    "name":"Shields",
+    "path":"folders/Objects/Player Objects/Shields.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -30,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_machine_handle",
-    "path":"sprites/spr_machine_handle/spr_machine_handle.yy",
+    "name":"spr_intashield",
+    "path":"sprites/spr_intashield/spr_intashield.yy",
   },
   "spriteMaskId":null,
   "visible":true,

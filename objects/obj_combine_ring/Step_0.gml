@@ -3,7 +3,8 @@
 	image_xscale = _scale
 	image_yscale = _scale
 	
-	var RandomRingSparkle = [spr_ring_sparkle, spr_ring_sparkle, spr_ring_sparkle, spr_ring_sparkle, spr_ring_sparkle, spr_ring_sparkle];
+	var RandomRingSparkle = array_create(6, spr_ring_sparkle);
+	
 	//Add timer
 	timer++
 	

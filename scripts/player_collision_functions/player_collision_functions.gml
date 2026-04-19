@@ -54,7 +54,6 @@ function angle_sensor(X, Y){
 					//Full solid:
 					case 0:
 						return true;
-					break;
 					
 					//Semi solid:
 					case 1:

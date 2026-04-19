@@ -26,15 +26,18 @@
 	//Hande player physics values
 	player_handle_physics();
 	
-	//prevent player for dieing in the bonus stage
-	if (instance_exists(obj_bonus_level)) {
-		disable_death = true	
+	//prevent player for dying in the bonus stage
+	if(instance_exists(obj_bonus_level))
+	{
+		disable_death = true;
 	}
 	
-	//check if player should be able to turn super
-	allow_super = true
-	if (input_disable || obj_level.disable_timer || instance_exists(obj_bonus_level) || instance_exists(par_shield)){
-		allow_super = false	
+	//Check if the player should be able to turn super
+	allow_super = true;
+	
+	if(input_disable || obj_level.disable_timer || instance_exists(obj_bonus_level) || instance_exists(par_shield))
+	{
+		allow_super = false;
 	}
 	
 	//Handle invincibility and speed shoes

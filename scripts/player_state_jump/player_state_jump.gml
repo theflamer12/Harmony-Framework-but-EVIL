@@ -24,12 +24,23 @@ function player_state_jump(){
 	}	
 	
 	//execute shield ability
-	if (press_action && character == CHAR_SONIC){
-		if (instance_exists(par_shield)) {
-			with (par_shield) {
-				if (use_allow && shield_state == 0) {
+	if (press_action && character == CHAR_SONIC)
+	{
+		if(shield != S_NONE) 
+		{
+			with(shield_list[shield]) 
+			{
+				if(use_allow && shield_state == 0) 
+				{
 					script_execute(jump) 
 				}
+			}
+		}
+		else
+		{
+			if(global.use_instashield)
+			{
+				instance_create_depth(x, y, depth - 10, obj_instashield);
 			}
 		}
 	}
