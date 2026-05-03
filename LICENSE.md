@@ -1,3 +1,8 @@
+Required Notice: This license applies retroactively to all previous versions, tags, and branches of the software within this repository.
+Required Notice: This license applies strictly to the original software code, graphics, and documentation. It DOES NOT apply to any included SEGA assets or third-party assets from The Spriters Resource or other sources, which remain the property of their respective owners.
+
+--------------------------------------
+
 # PolyForm Noncommercial License 1.0.0
 
 <https://polyformproject.org/licenses/noncommercial/1.0.0>
