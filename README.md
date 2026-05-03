@@ -3,7 +3,7 @@
 # NOTICE!!
 This build is beta at the moment, you can make a fangame in this all of essential features are done, use it at your own risk. [Current version: 0.99 - Stable]
 
-#LICENSING NOTICE
+# LICENSING NOTICE
 The code in this repository is licensed under the PolyForm Noncommercial License 1.0.0. However, this license applies strictly to the original software code, graphics, and documentation provided by the authors of the framework. This license DOES NOT apply to the following assets included for demonstration purposes:
 
 - SEGA Assets: All characters, graphics, sounds, and trademarks related to the Sonic The Hedgehog series are the property of SEGA.
