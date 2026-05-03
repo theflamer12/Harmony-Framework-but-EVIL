@@ -19,9 +19,11 @@
 	
 	//Position the camera
 	obj_camera.camera_x = marker.x + camera_pos[0];
-	obj_camera.target_x = marker.x + camera_pos[0];
+	obj_camera.target_x = obj_camera.target.x;
 	obj_camera.camera_y = marker.y + camera_pos[1] - 16;
-	obj_camera.target_y = marker.y + camera_pos[1] - 16;
+	obj_camera.target_y = obj_camera.target.y;
+	obj_camera.previous_x = obj_camera.target_x;
+	obj_camera.previous_y = obj_camera.target_y;
 	
 	//Camera bounds
 	obj_camera.limit_left = marker.x + cam_bound[0];

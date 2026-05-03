@@ -1,6 +1,4 @@
 /// @description Card events
-	obj_player.input_disable = true
-	
 	//Remove the title card with debug
 	if(!global.title_card)
 	{
@@ -53,7 +51,7 @@
 	}
 	
 	//Enable flags
-	if(timer > 180)
+	if(timer == 180)
 	{
 		if(!act_card)
 		{
@@ -63,17 +61,17 @@
 		obj_player.input_disable = false;
 		obj_level.disable_timer = false;	
 		obj_hud.slide_in = true;
-		
-		//End card
-		if(timer = 200) {
-			offset[0] = 0
-			offset[1] = 0
-			offset[2] = 0
-			offset[3] = 0
-			offset[4] = 0
-			offset[5] = 0
-			offset[6] = 0
-			timer = 0;
-			instance_destroy();
-		}
+	}
+	
+	//End card
+	if(timer == 200) 
+	{
+		offset[0] = 0
+		offset[1] = 0
+		offset[2] = 0
+		offset[3] = 0
+		offset[4] = 0
+		offset[5] = 0
+		offset[6] = 0
+		instance_destroy();
 	}
