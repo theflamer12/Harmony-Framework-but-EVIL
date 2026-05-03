@@ -1,7 +1,11 @@
 /// @description Values
 	triggered = false;
 	crumple = false;
-	fall_speed = 0
+	fall_speed = 0;
+	
+	//Collision
+	instance_act_semi_solid();
+	
 	//Create the new animator
 	animator = new animator_create();
 

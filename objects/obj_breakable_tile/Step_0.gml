@@ -4,7 +4,7 @@
 	
 	switch(breakable_type)
 	{
-		case 0:
+		case "Wall":
 		//Change collision flag
 		if(obj_player.state = player_state_roll && abs(obj_player.ground_speed) >= 1 && obj_player.ground || obj_player.state = player_state_spindash || obj_player.character == CHAR_KNUX)
 		{
@@ -30,14 +30,14 @@
 		}
 		break;
 		
-		case 1:
-		case 2:
+		case "Floor (Bounce)":
+		case "Floor (No Bounce)":
 			if(obj_player.state != player_state_spindash && obj_player.attacking && obj_player.y + obj_player.hitbox_h <= y && obj_player.y_speed >= 0)
 			{
 				collision_flag = false;	
 			}
 		break;
-		case 3:
+		case "Ceiling":
 			if(obj_player.y_speed < 0)
 			{
 				collision_flag = false;	
@@ -51,11 +51,11 @@
 	{
 		switch(breakable_type)
 		{
-			case 1:
+			case "Floor (Bounce)":
 				obj_player.y_speed = abs(obj_player.y_speed) * -1;
 			break;
 			
-			case 2:
+			case "Floor (No Bounce)":
 				obj_player.y_speed = 0;
 			break;
 		}

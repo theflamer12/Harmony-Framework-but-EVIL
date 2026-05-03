@@ -2,6 +2,8 @@
 	triggered = false;
 	spring_power = 10;
 	
+	instance_act_solid();
+	
 	//Create the new animator
 	animator = new animator_create();
 

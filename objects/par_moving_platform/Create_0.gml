@@ -9,6 +9,9 @@
 	last_x = 0
 	last_y = 0
 	
+	//Collision
+	instance_act_semi_solid();
+	
 	attached_list = ds_list_create();
 	
 	if(object_range > 0 )

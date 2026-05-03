@@ -14,10 +14,7 @@
     "name":"Monitor",
     "path":"folders/Objects/Stage Objects/Common Objects/Monitor.yy",
   },
-  "parentObjectId":{
-    "name":"par_solid_object",
-    "path":"objects/par_solid_object/par_solid_object.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
