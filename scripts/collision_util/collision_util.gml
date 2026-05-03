@@ -36,25 +36,26 @@ function collision_point_check(radius_x, radius_y, collision_mode = CMODE_FLOOR,
 		ds_list_destroy(solidCollisions);
 	}
 	
-	if(solid_object)
+	//Solid object interaction "par_solid_object"
+	if(collision_point(new_x+radius_x*y_dir+radius_y*x_dir, new_y+radius_y*y_dir+radius_x*-x_dir, par_solid_object, true, true) && solid_object)
 	{
-		//Trigger the collision
-		for(var i = 0; i < global.hitbox_index; i++)
+		//Get the value from the object with what youre coliding
+		var solidCollisions = ds_list_create();
+		var SolidCount = collision_point_list(new_x + radius_x * y_dir + radius_y * x_dir, new_y + radius_y * y_dir + radius_x * -x_dir, par_solid_object, true, true, solidCollisions, false);
+		for (var i = 0; i < SolidCount; i++)
 		{
-			var hitbox_array = global.hitbox_tocheck[i][0],
-				hitbox_type = global.hitbox_tocheck[i][1],
-				hitbox_id = global.hitbox_tocheck[i][2];
-				
-			if point_in_rectangle(new_x+radius_x*y_dir+radius_y*x_dir, new_y+radius_y*y_dir+radius_x*-x_dir, hitbox_array[0], hitbox_array[1], hitbox_array[2], hitbox_array[3]) && hitbox_id.collision_flag
+			var Solid =  solidCollisions[| i];
+			if(Solid.collision_flag)
 			{
-				if(hitbox_type == "solid" || hitbox_type == "semi-solid" && semi_solid)
+				if (Solid.collision_type = "Full Solid" || Solid.collision_type = "Semi Solid" && semi_solid)
 				{
+					ds_list_destroy(solidCollisions);
 					return true;
 				}
 			}
 		}
+		ds_list_destroy(solidCollisions);
 	}
-	
 	//Get the size of collision layer array:
 	var a_col = array_length(global.col_tile);
 	
@@ -135,23 +136,25 @@ function collision_line_check(radius_x, radius_y, collision_mode = CMODE_FLOOR, 
 		ds_list_destroy(solidCollisions);
 	}
 	
-	if(solid_object)
+	//Collision with solid terrain "par_solid"
+	if(collision_line(floor(x)+X1, floor(y)+Y1, floor(x)+X2, floor(y)+Y2, par_solid_object, true, true) && solid_object)
 	{
-		//Trigger the collision
-		for(var i = 0; i < global.hitbox_index; i++)
+		//Get the value from the object with what youre coliding
+		var solidCollisions = ds_list_create();
+		var SolidCount = collision_line_list(floor(x)+X1, floor(y)+Y1, floor(x)+X2, floor(y)+Y2, par_solid_object, true, true, solidCollisions, false);
+		for (var i = 0; i < SolidCount; i++)
 		{
-			var hitbox_array = global.hitbox_tocheck[i][0],
-				hitbox_type = global.hitbox_tocheck[i][1],
-				hitbox_id = global.hitbox_tocheck[i][2];
-				
-			if rectangle_in_rectangle(floor(x)+X1, floor(y)+Y1, floor(x)+X2, floor(y)+Y2, hitbox_array[0], hitbox_array[1], hitbox_array[2], hitbox_array[3]) && hitbox_id.collision_flag
+			var Solid =  solidCollisions[| i];
+			if(Solid.collision_flag)
 			{
-				if(hitbox_type == "solid" || hitbox_type == "semi-solid" && semi_solid)
+				if (Solid.collision_type = "Full Solid" || Solid.collision_type = "Semi Solid" && semi_solid)
 				{
+					ds_list_destroy(solidCollisions);
 					return true;
 				}
 			}
 		}
+		ds_list_destroy(solidCollisions);
 	}
 	
 	//Get the size of collision layer array:
@@ -225,23 +228,25 @@ function collision_instance(offset_x, offset_y, collision_plane = PLANE_A, semi_
 		ds_list_destroy(solidCollisions);
 	}
 	
-	if(solid_object)
+	//Collision with solid terrain "par_solid"
+	if(instance_place(floor(x) + offset_x, floor(y) + offset_y, par_solid_object) && solid_object)
 	{
-		//Trigger the collision
-		for(var i = 0; i < global.hitbox_index; i++)
+		//Get the value from the object with what youre coliding
+		var solidCollisions = ds_list_create();
+		var SolidCount = instance_place_list(floor(x) + offset_x, floor(y) + offset_y, par_solid_object, solidCollisions, false);
+		for (var i = 0; i < SolidCount; i++)
 		{
-			var hitbox_array = global.hitbox_tocheck[i][0],
-				hitbox_type = global.hitbox_tocheck[i][1],
-				hitbox_id = global.hitbox_tocheck[i][2];
-				
-			if(rectangle_in_rectangle(bbox_left + offset_x, bbox_top + offset_y, bbox_right + offset_x, bbox_bottom + offset_y, hitbox_array[0], hitbox_array[1], hitbox_array[2], hitbox_array[3]) && hitbox_id.collision_flag)
+			var Solid =  solidCollisions[| i];
+			if(Solid.collision_flag)
 			{
-				if(hitbox_type == "solid" || hitbox_type == "semi-solid" && semi_solid)
+				if (Solid.collision_type = "Full Solid" || Solid.collision_type = "Semi Solid" && semi_solid)
 				{
+					ds_list_destroy(solidCollisions);
 					return true;
 				}
 			}
 		}
+		ds_list_destroy(solidCollisions);
 	}
 	
 	//Get the size of collision layer array:
@@ -284,58 +289,6 @@ function collision_instance(offset_x, offset_y, collision_plane = PLANE_A, semi_
 						if(collision_plane == 2) return true;
 					break;
 				}
-			}
-		}
-	}
-}
-
-function instance_act_solid(hitbox_array = [bbox_left, bbox_top, bbox_right, bbox_bottom], player_target = instance_find(obj_player, 1))
-{
-	if(!variable_global_exists("hitbox_index")) global.hitbox_index = 0;
-	
-	for(var i = 0; i < global.hitbox_index; i++)
-	{
-		if(global.hitbox_tocheck[i][2] == id)
-		{
-			global.hitbox_tocheck[i][0] = hitbox_array;
-			global.hitbox_tocheck[i][1] = "solid";
-		}
-		else
-		{
-			if(i == global.hitbox_index - 1)
-			{
-				global.hitbox_tocheck[global.hitbox_index][0] = hitbox_array;
-				global.hitbox_tocheck[global.hitbox_index][1] = "solid";
-				global.hitbox_tocheck[global.hitbox_index][2] = id;
-				global.hitbox_index++;
-	
-				collision_flag = true;
-			}
-		}
-	}
-}
-
-function instance_act_semi_solid(hitbox_array = [bbox_left, bbox_top, bbox_right, bbox_bottom], player_target = instance_find(obj_player, 1))
-{
-	if(!variable_global_exists("hitbox_index")) global.hitbox_index = 0;
-	
-	for(var i = 0; i < global.hitbox_index; i++)
-	{
-		if(global.hitbox_tocheck[i][2] == id)
-		{
-			global.hitbox_tocheck[i][0] = hitbox_array;
-			global.hitbox_tocheck[i][1] = "semi-solid";
-		}
-		else
-		{
-			if(i == global.hitbox_index - 1)
-			{
-				global.hitbox_tocheck[global.hitbox_index][0] = hitbox_array;
-				global.hitbox_tocheck[global.hitbox_index][1] = "semi-solid";
-				global.hitbox_tocheck[global.hitbox_index][2] = id;
-				global.hitbox_index++;
-	
-				collision_flag = true;
 			}
 		}
 	}

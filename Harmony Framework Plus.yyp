@@ -275,6 +275,7 @@
     {"id":{"name":"par_gumball_solid","path":"objects/par_gumball_solid/par_gumball_solid.yy",},},
     {"id":{"name":"par_moving_platform","path":"objects/par_moving_platform/par_moving_platform.yy",},},
     {"id":{"name":"par_shield","path":"objects/par_shield/par_shield.yy",},},
+    {"id":{"name":"par_solid_object","path":"objects/par_solid_object/par_solid_object.yy",},},
     {"id":{"name":"par_solid","path":"objects/par_solid/par_solid.yy",},},
     {"id":{"name":"spr_bonus_block","path":"objects/spr_bonus_block/spr_bonus_block.yy",},},
     {"id":{"name":"rm_arboreal_agate1","path":"rooms/rm_arboreal_agate1/rm_arboreal_agate1.yy",},},

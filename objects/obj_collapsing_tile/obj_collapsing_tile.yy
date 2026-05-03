@@ -32,12 +32,7 @@
   "physicsStartAwake":true,
   "properties":[
     {"$GMObjectProperty":"v2","%Name":"target_layer","filters":[],"listItems":[],"multiselect":false,"name":"target_layer","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"\"\"","varType":2,},
-    {"$GMObjectProperty":"v2","%Name":"collapsing_type","filters":[],"listItems":[
-        "\"Right to left\"",
-        "\"Left to right\"",
-        "\"Center\"",
-        "\"Left and right\"",
-      ],"multiselect":false,"name":"collapsing_type","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"\"Right to left\"","varType":6,},
+    {"$GMObjectProperty":"v2","%Name":"collapsing_type","filters":[],"listItems":[],"multiselect":false,"name":"collapsing_type","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":1,},
     {"$GMObjectProperty":"v2","%Name":"collapsing_speed","filters":[],"listItems":[],"multiselect":false,"name":"collapsing_speed","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"3","varType":1,},
     {"$GMObjectProperty":"v2","%Name":"collapsing_delay","filters":[],"listItems":[],"multiselect":false,"name":"collapsing_delay","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":1,},
     {"$GMObjectProperty":"v2","%Name":"permanent","filters":[],"listItems":[],"multiselect":false,"name":"permanent","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},

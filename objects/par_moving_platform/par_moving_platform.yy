@@ -9,12 +9,17 @@
   ],
   "managed":true,
   "name":"par_moving_platform",
-  "overriddenProperties":[],
+  "overriddenProperties":[
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"par_solid_object","path":"objects/par_solid_object/par_solid_object.yy",},"propertyId":{"name":"collision_type","path":"objects/par_solid_object/par_solid_object.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"\"Semi Solid\"",},
+  ],
   "parent":{
     "name":"Parents",
     "path":"folders/Objects/Stage Objects/Common Objects/Parents.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"par_solid_object",
+    "path":"objects/par_solid_object/par_solid_object.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

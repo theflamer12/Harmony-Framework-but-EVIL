@@ -8,12 +8,17 @@
   ],
   "managed":true,
   "name":"obj_crumple_spring",
-  "overriddenProperties":[],
+  "overriddenProperties":[
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"par_solid_object","path":"objects/par_solid_object/par_solid_object.yy",},"propertyId":{"name":"collision_type","path":"objects/par_solid_object/par_solid_object.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"\"Semi Solid\"",},
+  ],
   "parent":{
     "name":"Bonus Stage",
     "path":"folders/Objects/Stage Objects/Bonus Stage.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"par_solid_object",
+    "path":"objects/par_solid_object/par_solid_object.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

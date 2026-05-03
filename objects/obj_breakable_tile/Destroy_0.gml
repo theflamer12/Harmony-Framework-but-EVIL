@@ -28,7 +28,7 @@
 	var endY	= y + 8;
 		
 	//Get position only for the breakable floor
-	if(breakable_type != "Wall")
+	if(breakable_type >= 1)
 	{
 		startX	= x + (sprite_width / 2);
 		startY	= bbox_bottom;
@@ -53,7 +53,7 @@
 				
 			switch(breakable_type)
 			{
-				case "Wall":		//Breakable wall physics
+				case 0:		//Breakable wall physics
 				//Set the angle for the pieces
 				var angle	= darctan2(angleX, curY);
 				var angle2	= 0;
@@ -74,9 +74,9 @@
 				tile.y_speed += 0.0625 * ((abs(curY) + abs(curX) + 2.0 * abs(curY)) / 4.0) * dcos(angle2);
 				break;
 					
-				case "Floor (Bounce)":
-				case "Floor (No Bounce)":
-				case "Ceiling":
+				case 1:
+				case 2:
+				case 3:
 					var angle		= darctan2(angleX, curY);
 					var velocity	= (abs(curX) + 2.0 * abs(curY)) / 4.0;
 					

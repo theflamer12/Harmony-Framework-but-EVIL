@@ -5,8 +5,6 @@
 	monitor_icon = spr_monitor_icon_10ring;
 	culling = true;
 	
-	instance_act_solid();
-	
 	if (!instance_exists(obj_bonus_level)) {
 		if (global.store_object_state[| id]) {
 			destroyed = true

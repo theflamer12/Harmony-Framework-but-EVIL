@@ -11,7 +11,10 @@
     "name":"Stage End",
     "path":"folders/Objects/Stage Objects/Common Objects/Stage End.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"par_solid_object",
+    "path":"objects/par_solid_object/par_solid_object.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

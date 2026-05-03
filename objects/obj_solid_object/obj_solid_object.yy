@@ -1,9 +1,7 @@
 {
   "$GMObject":"",
   "%Name":"obj_solid_object",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "eventList":[],
   "managed":true,
   "name":"obj_solid_object",
   "overriddenProperties":[],
@@ -11,7 +9,10 @@
     "name":"Misc",
     "path":"folders/Objects/Stage Objects/Common Objects/Misc.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"par_solid_object",
+    "path":"objects/par_solid_object/par_solid_object.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

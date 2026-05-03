@@ -44,17 +44,17 @@
 			switch(collapsing_type)
 			{
 				//From right to left
-				case "Right to left":
+				case 0:
 					piece.delay = collapsing_speed * (size_y + 2 * (max_x - 1 - i) - (j - min_y));
 				break;
 		
 				//From left to right
-				case "Left to right":	
+				case 1:	
 					piece.delay = collapsing_speed * (size_y + 2 * (i - min_x) - (j - min_y));
 				break;
 				
 				//From the center
-				case "Center":
+				case 2:
 					var tx = i - min_x;
 	                if (tx < size_x / 2)
 					{
@@ -64,7 +64,7 @@
 				break;
 				
 				//From both left and right
-				case "Left AND right":
+				case 3:
 					var tx = i - min_x;
 	                if (tx > size_x / 2)
 					{
