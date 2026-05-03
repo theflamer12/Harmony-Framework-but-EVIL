@@ -335,7 +335,6 @@
     {"id":{"name":"player_misc","path":"scripts/player_misc/player_misc.yy",},},
     {"id":{"name":"player_mode","path":"scripts/player_mode/player_mode.yy",},},
     {"id":{"name":"player_movement","path":"scripts/player_movement/player_movement.yy",},},
-    {"id":{"name":"player_object_collision","path":"scripts/player_object_collision/player_object_collision.yy",},},
     {"id":{"name":"player_recorder_setup","path":"scripts/player_recorder_setup/player_recorder_setup.yy",},},
     {"id":{"name":"player_recorder","path":"scripts/player_recorder/player_recorder.yy",},},
     {"id":{"name":"player_semisolids","path":"scripts/player_semisolids/player_semisolids.yy",},},

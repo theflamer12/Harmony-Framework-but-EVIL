@@ -51,6 +51,7 @@
     {"name":"check_instashield","order":13,"path":"scripts/check_instashield/check_instashield.yy",},
     {"name":"has_all_emeralds","order":12,"path":"scripts/has_all_emeralds/has_all_emeralds.yy",},
     {"name":"player_animation_list","order":8,"path":"scripts/player_animation_list/player_animation_list.yy",},
+    {"name":"player_collide_object","order":1,"path":"scripts/player_collide_object/player_collide_object.yy",},
     {"name":"player_direction","order":2,"path":"scripts/player_direction/player_direction.yy",},
     {"name":"player_get_input","order":14,"path":"scripts/player_get_input/player_get_input.yy",},
     {"name":"player_handle_hurt","order":3,"path":"scripts/player_handle_hurt/player_handle_hurt.yy",},

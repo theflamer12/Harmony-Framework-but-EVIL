@@ -4,6 +4,7 @@
 	y_speed = 0;
 	monitor_icon = spr_monitor_icon_10ring;
 	culling = true;
+	collision_flag = true;
 	
 	if (!instance_exists(obj_bonus_level)) {
 		if (global.store_object_state[| id]) {

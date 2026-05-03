@@ -86,23 +86,15 @@ function check_object(x1, y1, x2, y2, semi_solid = false)
 	if(!collision_allow) exit;
 	
 	//Trigger the collision
-	if collision_rectangle(floor(x)-x1,floor(y)-y1,floor(x)+x2,floor(y)+y2,par_solid_object,true,true){
+	for(var i = 0; i < global.solid_index; i++)
+	{
+		var obj = global.solid_list[i];
 		
-		//Get the value from the object with what youre coliding
-		var solidCollisions = ds_list_create();
-		var SolidCount = collision_rectangle_list(floor(x)-x1,floor(y)-y1,floor(x)+x2,floor(y)+y2,par_solid_object,true,true,solidCollisions,false);
-		for (var i = 0; i < SolidCount; i++)
+		if(rectangle_in_rectangle(floor(x)-x1, floor(y)-y1, floor(x)+x2, floor(y)+y2, obj[0], obj[1], obj[2], obj[3])
+		&& (obj[4] == C_SEMISOLID && semi_solid || obj[4] == C_SOLID))
 		{
-			var Solid =  solidCollisions[| i];
-			if(Solid.collision_flag){
-				if (Solid.collision_type = "Full Solid" || Solid.collision_type = "Semi Solid" && semi_solid && y < Solid.bbox_top+(y-yprevious) && mode == 0)
-				{
-					ds_list_destroy(solidCollisions);
-					return Solid;
-				}
-			}
+			return obj[5];
 		}
-		ds_list_destroy(solidCollisions);
 	}
 }
 

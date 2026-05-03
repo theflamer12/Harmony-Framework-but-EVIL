@@ -1,7 +1,7 @@
 /// @description Script
-
 	//Get player object
-	var player = instance_nearest(x, y, obj_player);
+	var player = instance_nearest(x, y, obj_player),
+		collide = instance_act_solid(C_SEMISOLID);
 	
 	//Get current segment
 	current_segment = (player.x - x) / 16;
@@ -53,19 +53,22 @@
 	}
 	
 	//Player standing on the bridge
-	if(player_collide_object(C_BOTTOM_EXT) && player.mode = 0 && player.ground)
+	if(collide == C_BOTTOM && player.mode = 0 && player.ground)
 	{
 		//Bubble shield effect
 		if(instance_exists(obj_bubble_shield) && obj_bubble_shield.shield_state = 1 && player.ground)
 		{
 			stand_offset = 1;
 		}
+		
 		if(!player.on_terrain)
 		{
 			player.y = bbox_top - player.hitbox_h - 1;
 		}
+		
 		standing = true;
-	}else
+	}
+	else
 	{
 		standing = false;	
 	}
