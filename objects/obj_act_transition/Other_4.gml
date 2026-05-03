@@ -19,9 +19,11 @@
 	
 	//Position the camera
 	obj_camera.camera_x = marker.x + camera_pos[0];
-	obj_camera.target_x = marker.x + camera_pos[0];
+	obj_camera.target_x = obj_camera.target.x;
 	obj_camera.camera_y = marker.y + camera_pos[1] - 16;
-	obj_camera.target_y = marker.y + camera_pos[1] - 16;
+	obj_camera.target_y = obj_camera.target.y;
+	obj_camera.previous_x = obj_camera.target_x;
+	obj_camera.previous_y = obj_camera.target_y;
 	
 	//Camera bounds
 	obj_camera.limit_left = marker.x + cam_bound[0];
@@ -33,14 +35,25 @@
 	obj_camera.limit_bottom = marker.y + cam_bound[3];
 	obj_camera.target_bottom = marker.y + cam_bound[3];
 	
-	//Storing background oh no
-	with(par_background)
+	//Storing background oh no (Part 2!)
+	var names = variable_struct_get_names(background_store);
+	for (var i = 0; i < array_length(names); i++)
 	{
-		for(var i = 0; i < bg_id; i++)
+		var data = background_store[$ names[i]];
+		var bg = asset_get_index(names[i]);
+		
+		//Check if object exists in the room to apply proper data
+		if (bg != -1 && instance_exists(bg))
 		{
-			offset_x[i] = global.diff_store_x[i];
-			offset_y[i] = global.diff_store_y[i];
-			trigger[i] = true
+			with (bg)
+			{
+				for (var n = 0; n < bg_id; ++n)
+				{
+					offset_x[n] = data.list_x[n];
+					offset_y[n] = data.list_y[n];
+					trigger[n]  = true;
+				}
+			}
 		}
 	}
 	
@@ -59,4 +72,3 @@
 		new_monitor.destroyed = monitor_destroy[i];
 		new_monitor.depth = monitor_depth[i];
 	}
-	
