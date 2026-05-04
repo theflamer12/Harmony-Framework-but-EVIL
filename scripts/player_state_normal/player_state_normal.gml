@@ -133,11 +133,11 @@ function player_state_normal(){
 	if(!line_check(0, hitbox_h + 16, true) && !check_object(0, 0, 1, hitbox_h + 8, true) && ground && ground_speed == 0)
 	{
 		//Change animation
-		if(!line_check(hitbox_w, hitbox_h + 16, true) && !check_object(-wall_w, 0, wall_w, hitbox_h + 8, true))
+		if(!line_check(hitbox_w, hitbox_h + 16, true) && !on_object || ledge == 1)
 		{
 			anim = facing = 1 ? ANIM.LEDGE2 : ANIM.LEDGE1;
 		}
-		if(!line_check(-hitbox_w, hitbox_h + 16, true) && !check_object(wall_w, 0, -wall_w, hitbox_h + 8, true))
+		if(!line_check(-hitbox_w, hitbox_h + 16, true) && !on_object || ledge == -1)
 		{
 			anim = facing = -1 ? ANIM.LEDGE2 : ANIM.LEDGE1;
 		}
@@ -149,7 +149,7 @@ function player_state_normal(){
 	//Pushing animation
 	if(mov = facing && ground && abs(ground_speed) <= x_accel + 0.5)
 	{
-		if(point_check((wall_w + 1) * facing, wall_h)|| check_object(-(wall_w + 1) * facing, hitbox_h, (wall_w + 1) * facing, hitbox_h))
+		if(point_check((wall_w + 1) * facing, wall_h) || (pushing == C_LEFT && hold_right) || (pushing == C_RIGHT && hold_left))
 		{
 			anim = ANIM.PUSH;
 		}

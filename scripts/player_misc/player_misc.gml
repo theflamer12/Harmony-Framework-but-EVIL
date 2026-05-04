@@ -20,4 +20,6 @@ function player_misc(){
 	}
 	
 	on_object = false;
+	ledge = 0;
+	pushing = 0;
 }

@@ -68,9 +68,10 @@ function instance_act_solid(o, hitbox_other, this, this_hibox)
 	show_debug_message(side)
 	
 	// Build the result struct
-	var r =
-	{
+	var r = {
 		object : o,
+		this_object : this,
+		this_box : this_hibox,
 		col_side : side,
 		col_x : colX,
 		col_y : colY
@@ -81,39 +82,101 @@ function instance_act_solid(o, hitbox_other, this, this_hibox)
 	
 	if(side != 0)
 	{
+		// If the other object is the player, then execute player's reaction to solid object
 		if(isPlayer)
 			player_react_solid(r);
+		else
+			instance_react_solid(r);
 	}
 	
 }
 
-function player_react_solid(result)
+// ===========================================================================================================
+// Utilities internal functions
+// ===========================================================================================================
+function instance_react_solid(result)
 {
+	// Get values from the struct
 	var o = result.object;
 	var side = result.col_side;
 	var colX = result.col_x;
 	var colY = result.col_y
 	
+	// Vertical collision sides
 	if(side == C_TOP || side == C_BOTTOM)
 	{
+		// Position the object
 		o.y = colY;	
+		
+		// Stop object's vertical movement if it exists
+		if(variable_instance_exists(o, "y_speed"))
+		{
+			if(side == C_TOP && o.y_speed > 0 || side == C_BOTTOM && o.y_speed < 0)
+				o.y_speed = 0;
+		}
+	}
+	
+	// Horizontal collision sides
+	if(side == C_LEFT || side == C_RIGHT)
+	{
+		// Position the object
+		o.x = colX;	
 			
+		// Stop object's horizontal movement if it exists
+		if(variable_instance_exists(o, "y_speed"))
+		{
+			if(side == C_LEFT && o.x_speed > 0 || side == C_RIGHT && o.x_speed < 0)
+				o.x_speed = 0;
+		}
+	}
+}
+
+// Required to be split to keep things clean, player object reacts differently to the solid object and requires more code
+function player_react_solid(result)
+{
+	// Get values from the struct
+	var o = result.object;
+	var this = result.this_object;
+	var side = result.col_side;
+	var colX = result.col_x;
+	var colY = result.col_y
+	
+	// Vertical collision sides
+	if(side == C_TOP || side == C_BOTTOM)
+	{
+		// Position the object
+		o.y = colY;	
+		
+		// Flag player as on object
 		if(side == C_TOP)
+		{
 			o.on_object = true;
 			
+			// Ledge direction
+			if(o.ground && o.x < this.x + result.this_box[BOX_LEFT])
+				o.ledge = -1;
+				
+			if(o.ground && o.x > this.x + result.this_box[BOX_RIGHT])
+				o.ledge = 1;
+		}
+		
+		// Going down
 		if(o.y_speed > 0)
 		{
-				
+			
+			// If player is going down the falls and hits an object, stop the player
 			if(o.ground && (o.mode == 1 || o.mode == 3))
 			{
 				o.ground_speed = 0;	
 			}
-					
+			
+			// Land the player
 			if(!o.ground && side = C_TOP)
 			{
-
+				// Stop falling
 				o.y_speed = 0;
 				
+				// Transfer speed
 				if(!o.ground)
 					o.ground_speed = o.x_speed;
 				
@@ -121,12 +184,14 @@ function player_react_solid(result)
 				o.landed = true;
 			}
 		}
-			
+
+		// Going up
 		if(o.y_speed < 0)
 		{
-			if(side == C_BOTTOM)
+			if(!o.ground && side == C_BOTTOM)
 				o.y_speed = 0;
-				
+			
+			// If player is going up the walls, then stop
 			if(o.ground && (o.mode == 1 || o.mode == 3))
 			{
 				o.ground_speed = 0;	
@@ -149,11 +214,15 @@ function player_react_solid(result)
 		{
 			variable_instance_set(o, spdVal, 0);	
 		}
+					
+		if(o.ground)
+		{	
+			// Get the correct pushing animation
+			o.pushing = side;
 			
-		// Detach from ceiling
-		if(o.ground && o.mode == 2)
-		{
-			o.ground_speed = 0;
+			// Detach from ceiling
+			if(o.mode == 2)
+				o.ground_speed = 0;
 		}
 	}
 }
