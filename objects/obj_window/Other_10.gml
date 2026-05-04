@@ -8,6 +8,9 @@
 	//Resize the surface:
 	surface_resize(application_surface, global.window_width, global.window_height);
 	
+	//Window size limiter
+	global.window_size_limit = round(display_get_width() / global.window_width);
+	
 	//Center the screen
 	window_center();
 	
