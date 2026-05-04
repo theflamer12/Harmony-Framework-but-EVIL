@@ -1,5 +1,6 @@
 /// @description Script
-	var collide = (collision_flag ? instance_act_solid(C_SOLID) : -1);
+	//Always enable flag
+	collision_flag = true;
 	
 	//Get colliding player
 	var player = instance_nearest(x, y, obj_player);
@@ -16,20 +17,19 @@
 		}
 		else
 		{
-			if(player.attacking && collide == C_TOP_EXT)
+			if(player.attacking && player_collide_object(C_TOP_EXT))
 			{
 				collision_flag = false;
 			}
 		}
 	}
-	
-	
+
 	
 	//When monitor isn't destroyed
 	if(!destroyed)
 	{
 		//Bump the monitor
-		if(collide == C_TOP && sign(image_yscale) == 1)
+		if(player_collide_object(C_TOP) && sign(image_yscale) == 1)
 		{
 			collision_flag = false;
 			ground = false;
@@ -45,7 +45,7 @@
 		}
 		
 		//Destroy the monitor
-		if(collide == C_MAIN && !collision_flag && player.y < bbox_bottom-1 || check_instashield(true))
+		if(player_collide_object(C_MAIN) && !collision_flag && player.y < bbox_bottom-1 || check_instashield(true))
 		{
 			destroyed = true;
 			ground = false;

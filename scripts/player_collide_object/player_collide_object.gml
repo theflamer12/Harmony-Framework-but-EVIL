@@ -1,5 +1,4 @@
-function player_collide_object(side)
-{
+function player_collide_object(side){
 	//Collision side macros:
 	#macro C_MAIN 0
 	#macro C_BOTTOM 1

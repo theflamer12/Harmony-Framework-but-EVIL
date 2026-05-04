@@ -31,6 +31,9 @@
 		//Handle semi solid:
 		player_semisolids();
 		
+		//Handle player collision with solid objects:
+		player_object_collision();
+		
 		//Handle player terrain collision:
 		player_collision();
 		
