@@ -18,4 +18,6 @@ function player_misc(){
 	}else{
 		with(par_shield) instance_destroy();
 	}
+	
+	on_object = false;
 }

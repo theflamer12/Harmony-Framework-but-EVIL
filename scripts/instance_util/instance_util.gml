@@ -1,0 +1,159 @@
+#macro BOX_LEFT 0
+#macro BOX_TOP 1
+#macro BOX_RIGHT 2
+#macro BOX_BOTTOM 3
+
+function instance_act_solid(o, hitbox_other, this, this_hibox)
+{
+	var sideH = 0;
+	var sideV = 0;
+	
+	var colX = o.x;
+	var colY = o.y;
+	
+	var cenX = this.x + (this_hibox[BOX_RIGHT] + this_hibox[BOX_LEFT]) * 0.5;
+	
+	if(o.x <= cenX)
+	{
+		if(o.x + hitbox_other[BOX_RIGHT] + 1 >= this.x + this_hibox[BOX_LEFT] &&
+		this.y + this_hibox[BOX_TOP] < o.y + hitbox_other[BOX_BOTTOM] && 
+		this.y + this_hibox[BOX_BOTTOM] > o.y + hitbox_other[BOX_TOP])	
+		{
+			sideH = C_LEFT;
+			colX = this.x + (this_hibox[BOX_LEFT] - hitbox_other[BOX_RIGHT]) - 1;
+		}
+	} 
+	else if(o.x + hitbox_other[BOX_LEFT] <= this.x + this_hibox[BOX_RIGHT] &&
+	this.y + this_hibox[BOX_TOP] < o.y + hitbox_other[BOX_BOTTOM] && 
+	this.y + this_hibox[BOX_BOTTOM] > o.y + hitbox_other[BOX_TOP])	
+	{
+		sideH = C_RIGHT;
+		colX = this.x + (this_hibox[BOX_RIGHT] - hitbox_other[BOX_LEFT]);
+	}
+	
+	var cenY = this.y + (this_hibox[BOX_TOP] + this_hibox[BOX_BOTTOM]) * 0.5;
+	
+	if(o.y < cenY)
+	{
+		if(o.y + hitbox_other[BOX_BOTTOM] + 1 >= this.y + this_hibox[BOX_TOP] &&
+		this.x + this_hibox[BOX_LEFT] < o.x + hitbox_other[BOX_RIGHT] &&
+		this.x + this_hibox[BOX_RIGHT] > o.x + hitbox_other[BOX_LEFT])
+		{
+			sideV = C_TOP;	
+			colY = this.y + (this_hibox[BOX_TOP] - hitbox_other[BOX_BOTTOM]) - 1;
+		}
+	} 
+	else if(o.y + hitbox_other[BOX_TOP] <= this.y + this_hibox[BOX_BOTTOM] &&
+	this.x + this_hibox[BOX_LEFT] < o.x + hitbox_other[BOX_RIGHT] &&
+	this.x + this_hibox[BOX_RIGHT] > o.x + hitbox_other[BOX_LEFT])
+	{
+		sideV = C_BOTTOM;	
+		colY = this.y + (this_hibox[BOX_BOTTOM] - hitbox_other[BOX_TOP]);
+	}
+	
+	var side = 0;
+	var deltaX = colX - o.x;
+	var deltaY = colY - o.y;
+	
+	 
+	if((deltaX * deltaX >= deltaY * deltaY && (sideV || !sideH)) || (!sideH && sideV))
+	{
+		side = sideV;	
+	}
+	else
+	{
+		side = sideH;	
+	}
+	
+	show_debug_message(side)
+	
+	// Build the result struct
+	var r =
+	{
+		object : o,
+		col_side : side,
+		col_x : colX,
+		col_y : colY
+	}
+	
+	// Check if this is a player object
+	var isPlayer = o.object_index == obj_player;
+	
+	if(side != 0)
+	{
+		if(isPlayer)
+			player_react_solid(r);
+	}
+	
+}
+
+function player_react_solid(result)
+{
+	var o = result.object;
+	var side = result.col_side;
+	var colX = result.col_x;
+	var colY = result.col_y
+	
+	if(side == C_TOP || side == C_BOTTOM)
+	{
+		o.y = colY;	
+			
+		if(side == C_TOP)
+			o.on_object = true;
+			
+		if(o.y_speed > 0)
+		{
+				
+			if(o.ground && (o.mode == 1 || o.mode == 3))
+			{
+				o.ground_speed = 0;	
+			}
+					
+			if(!o.ground && side = C_TOP)
+			{
+
+				o.y_speed = 0;
+				
+				if(!o.ground)
+					o.ground_speed = o.x_speed;
+				
+				o.ground = true;	
+				o.landed = true;
+			}
+		}
+			
+		if(o.y_speed < 0)
+		{
+			if(side == C_BOTTOM)
+				o.y_speed = 0;
+				
+			if(o.ground && (o.mode == 1 || o.mode == 3))
+			{
+				o.ground_speed = 0;	
+			}
+		}
+
+	}
+		
+	// Horizontal collision sides
+	if(side == C_LEFT || side == C_RIGHT)
+	{
+		// Position the object
+		o.x = colX;	
+			
+		// Stop the object from moving
+		var spdVal = o.ground ? "ground_speed" : "x_speed";
+		var spd = variable_instance_get(o, spdVal);
+			
+		if(side == C_LEFT && spd > 0 || side == C_RIGHT && spd < 0)
+		{
+			variable_instance_set(o, spdVal, 0);	
+		}
+			
+		// Detach from ceiling
+		if(o.ground && o.mode == 2)
+		{
+			o.ground_speed = 0;
+		}
+	}
+}

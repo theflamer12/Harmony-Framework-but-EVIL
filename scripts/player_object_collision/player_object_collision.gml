@@ -1,4 +1,5 @@
 function player_object_collision(){
+	exit;
 	var object = check_object(wall_w, hitbox_h, wall_w, hitbox_h)
 	 
 	if(object && yprevious + hitbox_h >= object.bbox_top)
@@ -82,13 +83,13 @@ function player_object_collision(){
 		
 		if(!check_object(wall_w, 0, wall_w, hitbox_h+bottom_ext, true))
 		{
-			on_object = false;
+			//on_object = false;
 		}
 	}
 	
 	//Disable on object collision in the air
 	if(!ground) 
 	{
-		on_object = false;
+		//on_object = false;
 	}
 }
