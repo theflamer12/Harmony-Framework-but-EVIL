@@ -3,52 +3,60 @@
 #macro BOX_RIGHT 2
 #macro BOX_BOTTOM 3
 
-function instance_act_solid(o, hitbox_other, this, this_hibox)
-{
+function instance_act_solid(o, hitbox_other = noone, this = id, this_hitbox = noone)
+{	
+	// Temps
 	var sideH = 0;
 	var sideV = 0;
-	
 	var colX = o.x;
 	var colY = o.y;
 	
-	var cenX = this.x + (this_hibox[BOX_RIGHT] + this_hibox[BOX_LEFT]) * 0.5;
+	// Make hitboxes
+	var thisHitbox = _instance_evaluate_hitbox(this, this_hitbox);
+	var otherHitbox = _instance_evaluate_hitbox(o, hitbox_other);
+	
+	// Orientate hitboxes depending on scale
+	thisHitbox = _instance_orient_hitbox(this, thisHitbox);
+	otherHitbox = _instance_orient_hitbox(o, otherHitbox);
+	
+	var cenX = this.x + (thisHitbox.right + thisHitbox.left) * 0.5;
 	
 	if(o.x <= cenX)
 	{
-		if(o.x + hitbox_other[BOX_RIGHT] + 1 >= this.x + this_hibox[BOX_LEFT] &&
-		this.y + this_hibox[BOX_TOP] < o.y + hitbox_other[BOX_BOTTOM] && 
-		this.y + this_hibox[BOX_BOTTOM] > o.y + hitbox_other[BOX_TOP])	
+		if(o.x + otherHitbox.right + 1 >= this.x + thisHitbox.left &&
+		this.y + thisHitbox.top < o.y + otherHitbox.bottom && 
+		this.y + thisHitbox.bottom > o.y + otherHitbox.top)	
 		{
 			sideH = C_LEFT;
-			colX = this.x + (this_hibox[BOX_LEFT] - hitbox_other[BOX_RIGHT]) - 1;
+			colX = this.x + (thisHitbox.left - otherHitbox.right) - 1;
 		}
 	} 
-	else if(o.x + hitbox_other[BOX_LEFT] <= this.x + this_hibox[BOX_RIGHT] &&
-	this.y + this_hibox[BOX_TOP] < o.y + hitbox_other[BOX_BOTTOM] && 
-	this.y + this_hibox[BOX_BOTTOM] > o.y + hitbox_other[BOX_TOP])	
+	else if(o.x + otherHitbox.left <= this.x + thisHitbox.right &&
+	this.y + thisHitbox.top < o.y + otherHitbox.bottom && 
+	this.y + thisHitbox.bottom > o.y + otherHitbox.top)	
 	{
 		sideH = C_RIGHT;
-		colX = this.x + (this_hibox[BOX_RIGHT] - hitbox_other[BOX_LEFT]);
+		colX = this.x + (thisHitbox.right - otherHitbox.left);
 	}
 	
-	var cenY = this.y + (this_hibox[BOX_TOP] + this_hibox[BOX_BOTTOM]) * 0.5;
+	var cenY = this.y + (thisHitbox.top + thisHitbox.bottom) * 0.5;
 	
 	if(o.y < cenY)
 	{
-		if(o.y + hitbox_other[BOX_BOTTOM] + 1 >= this.y + this_hibox[BOX_TOP] &&
-		this.x + this_hibox[BOX_LEFT] < o.x + hitbox_other[BOX_RIGHT] &&
-		this.x + this_hibox[BOX_RIGHT] > o.x + hitbox_other[BOX_LEFT])
+		if(o.y + otherHitbox.bottom + 1 >= this.y + thisHitbox.top &&
+		this.x + thisHitbox.left < o.x + otherHitbox.right &&
+		this.x + thisHitbox.right > o.x + otherHitbox.left)
 		{
 			sideV = C_TOP;	
-			colY = this.y + (this_hibox[BOX_TOP] - hitbox_other[BOX_BOTTOM]) - 1;
+			colY = this.y + (thisHitbox.top - otherHitbox.bottom) - 1;
 		}
 	} 
-	else if(o.y + hitbox_other[BOX_TOP] <= this.y + this_hibox[BOX_BOTTOM] &&
-	this.x + this_hibox[BOX_LEFT] < o.x + hitbox_other[BOX_RIGHT] &&
-	this.x + this_hibox[BOX_RIGHT] > o.x + hitbox_other[BOX_LEFT])
+	else if(o.y + otherHitbox.top <= this.y + thisHitbox.bottom &&
+	this.x + thisHitbox.left < o.x + otherHitbox.right &&
+	this.x + thisHitbox.right > o.x + otherHitbox.left)
 	{
 		sideV = C_BOTTOM;	
-		colY = this.y + (this_hibox[BOX_BOTTOM] - hitbox_other[BOX_TOP]);
+		colY = this.y + (thisHitbox.bottom - otherHitbox.top);
 	}
 	
 	var side = 0;
@@ -71,7 +79,7 @@ function instance_act_solid(o, hitbox_other, this, this_hibox)
 	var r = {
 		object : o,
 		this_object : this,
-		this_box : this_hibox,
+		this_box : thisHitbox,
 		col_side : side,
 		col_x : colX,
 		col_y : colY
@@ -86,7 +94,7 @@ function instance_act_solid(o, hitbox_other, this, this_hibox)
 		if(isPlayer)
 			player_react_solid(r);
 		else
-			instance_react_solid(r);
+			_instance_react_solid(r);
 	}
 	
 }
@@ -94,7 +102,7 @@ function instance_act_solid(o, hitbox_other, this, this_hibox)
 // ===========================================================================================================
 // Utilities internal functions
 // ===========================================================================================================
-function instance_react_solid(result)
+function _instance_react_solid(result)
 {
 	// Get values from the struct
 	var o = result.object;
@@ -131,98 +139,79 @@ function instance_react_solid(result)
 	}
 }
 
-// Required to be split to keep things clean, player object reacts differently to the solid object and requires more code
-function player_react_solid(result)
+function _instance_orient_hitbox(this, hitbox) 
 {
-	// Get values from the struct
-	var o = result.object;
-	var this = result.this_object;
-	var side = result.col_side;
-	var colX = result.col_x;
-	var colY = result.col_y
+	var dstBox = new instance_hitbox();
 	
-	// Vertical collision sides
-	if(side == C_TOP || side == C_BOTTOM)
-	{
-		// Position the object
-		o.y = colY;	
-		
-		// Flag player as on object
-		if(side == C_TOP)
-		{
-			o.on_object = true;
-			
-			// Ledge direction
-			if(o.ground && o.x < this.x + result.this_box[BOX_LEFT])
-				o.ledge = -1;
-				
-			if(o.ground && o.x > this.x + result.this_box[BOX_RIGHT])
-				o.ledge = 1;
-		}
-		
-		// Going down
-		if(o.y_speed > 0)
-		{
-			
-			// If player is going down the falls and hits an object, stop the player
-			if(o.ground && (o.mode == 1 || o.mode == 3))
-			{
-				o.ground_speed = 0;	
-			}
-			
-			// Land the player
-			if(!o.ground && side = C_TOP)
-			{
-				// Stop falling
-				o.y_speed = 0;
-				
-				// Transfer speed
-				if(!o.ground)
-					o.ground_speed = o.x_speed;
-				
-				o.ground = true;	
-				o.landed = true;
-			}
-		}
+	dstBox.left = hitbox.left * this.image_xscale;
+	dstBox.right = hitbox.right * this.image_xscale;
+	dstBox.top = hitbox.top * this.image_yscale;
+	dstBox.bottom = hitbox.bottom * this.image_yscale;
 
-		// Going up
-		if(o.y_speed < 0)
-		{
-			if(!o.ground && side == C_BOTTOM)
-				o.y_speed = 0;
-			
-			// If player is going up the walls, then stop
-			if(o.ground && (o.mode == 1 || o.mode == 3))
-			{
-				o.ground_speed = 0;	
-			}
-		}
-
-	}
-		
-	// Horizontal collision sides
-	if(side == C_LEFT || side == C_RIGHT)
+	if (dstBox.left > dstBox.right) 
 	{
-		// Position the object
-		o.x = colX;	
-			
-		// Stop the object from moving
-		var spdVal = o.ground ? "ground_speed" : "x_speed";
-		var spd = variable_instance_get(o, spdVal);
-			
-		if(side == C_LEFT && spd > 0 || side == C_RIGHT && spd < 0)
-		{
-			variable_instance_set(o, spdVal, 0);	
-		}
-					
-		if(o.ground)
-		{	
-			// Get the correct pushing animation
-			o.pushing = side;
-			
-			// Detach from ceiling
-			if(o.mode == 2)
-				o.ground_speed = 0;
-		}
+		var s = dstBox.left
+		dstBox.left = dstBox.right;
+		dstBox.right = s;
 	}
+	
+	if (dstBox.top > dstBox.bottom) 
+	{
+		var s = dstBox.top
+		dstBox.top = dstBox.bottom;
+		dstBox.bottom = s;
+	}
+	
+	return dstBox;
+}
+
+function _instance_make_hitbox(inst)
+{
+	var newBox = new instance_hitbox();
+	var s = inst.sprite_index;
+	
+	if(inst.mask_index)
+		s = mask_index;
+	
+	newBox.left = sprite_get_bbox_left(s) - sprite_get_xoffset(s);
+	newBox.right = sprite_get_bbox_right(s) - sprite_get_xoffset(s) + 1;
+	newBox.top = sprite_get_bbox_top(s) - sprite_get_yoffset(s);
+	newBox.bottom = sprite_get_bbox_bottom(s) - sprite_get_yoffset(s) + 1;
+	
+	return newBox;
+}
+
+function _instance_evaluate_hitbox(this, hitbox)
+{
+	var newBox;
+	
+	// Check if hitbox is a valid array
+	if(is_array(hitbox))
+	{
+		newBox = new instance_hitbox(hitbox[0], hitbox[1], hitbox[2], hitbox[3]);
+	}
+	else if(is_struct(hitbox))
+	{
+		// If it's not an array, check if it's a struct
+		newBox = new instance_hitbox(hitbox.left, hitbox.top, hitbox.right, hitbox.bottom);
+	}
+	else
+	{
+		// If it's not a struct either, build a new hitbox
+		newBox = new instance_hitbox();
+		newBox = _instance_make_hitbox(this);
+	}	
+	
+	return newBox;
+}
+
+// ===========================================================================================================
+// Utilities constructors
+// ===========================================================================================================
+function instance_hitbox(box_left = 0, box_top = 0, box_right = 0, box_bottom = 0) constructor
+{
+	left = box_left;
+	top = box_top;
+	right = box_right;
+	bottom = box_bottom;
 }
