@@ -14,7 +14,7 @@ function on_screen(RegionW = 16, RegionH = 16) {
 }
 
 
-function origin_on_screen(origin_x = xstart, origin_y = ystart, RegionW = 16, RegionH = 16) {
+function origin_on_screen(RegionW = 16, RegionH = 16, origin_x = xstart, origin_y = ystart) {
 	var c, cx, cy, sw, sh;
 	c = view_camera[view_current]
 	cx = camera_get_view_x(c)
