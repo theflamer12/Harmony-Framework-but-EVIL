@@ -19,8 +19,8 @@ function instance_act_solid(o, hitbox_other = noone, this = id, this_hitbox = no
 	thisHitbox = _instance_orient_hitbox(this, thisHitbox);
 	otherHitbox = _instance_orient_hitbox(o, otherHitbox);
 	
+	// Horizontal collision
 	var cenX = this.x + (thisHitbox.right + thisHitbox.left) * 0.5;
-	
 	if(o.x <= cenX)
 	{
 		if(o.x + otherHitbox.right + 1 >= this.x + thisHitbox.left &&
@@ -39,8 +39,8 @@ function instance_act_solid(o, hitbox_other = noone, this = id, this_hitbox = no
 		colX = this.x + (thisHitbox.right - otherHitbox.left);
 	}
 	
+	// Vertical collision
 	var cenY = this.y + (thisHitbox.top + thisHitbox.bottom) * 0.5;
-	
 	if(o.y < cenY)
 	{
 		if(o.y + otherHitbox.bottom + 1 >= this.y + thisHitbox.top &&
@@ -59,11 +59,12 @@ function instance_act_solid(o, hitbox_other = noone, this = id, this_hitbox = no
 		colY = this.y + (thisHitbox.bottom - otherHitbox.top);
 	}
 	
+	// Temps
 	var side = 0;
 	var deltaX = colX - o.x;
 	var deltaY = colY - o.y;
-	
 	 
+	// Get the correct collision side
 	if((deltaX * deltaX >= deltaY * deltaY && (sideV || !sideH)) || (!sideH && sideV))
 	{
 		side = sideV;	
@@ -72,8 +73,6 @@ function instance_act_solid(o, hitbox_other = noone, this = id, this_hitbox = no
 	{
 		side = sideH;	
 	}
-	
-	show_debug_message(side)
 	
 	// Build the result struct
 	var r = {
@@ -97,8 +96,71 @@ function instance_act_solid(o, hitbox_other = noone, this = id, this_hitbox = no
 			_instance_react_solid(r);
 	}
 	
+	return side;
 }
 
+function instance_act_semi_solid(o, hitbox_other = noone, this = id, this_hitbox = noone)
+{	
+	// Make hitboxes
+	var thisHitbox = _instance_evaluate_hitbox(this, this_hitbox);
+	var otherHitbox = _instance_evaluate_hitbox(o, hitbox_other);
+	
+	// Orientate hitboxes depending on scale
+	thisHitbox = _instance_orient_hitbox(this, thisHitbox);
+	otherHitbox = _instance_orient_hitbox(o, otherHitbox);
+	
+	var otherEdge = o.y + otherHitbox.bottom;
+	var otherEdgePrev = (o.y - o.y_speed) + otherHitbox.bottom;
+	
+	var platformTop = this.y + thisHitbox.top - 1;
+	var platformBottom = this.y + thisHitbox.top + 4;
+	
+	var isColliding = (this.x + thisHitbox.left < o.x + otherHitbox.right) &&
+		(this.x + thisHitbox.right > o.x + otherHitbox.left) &&
+		o.y_speed >= 0 && otherEdge >= platformTop && otherEdgePrev <= platformBottom;
+		
+	if(isColliding)
+	{
+		o.y = platformTop - otherHitbox.bottom;
+		
+		// Check if this is a player object
+		var isPlayer = o.object_index == obj_player;
+		
+		if(isPlayer)
+		{
+			// Flag player as on object
+			o.on_object = true;
+			
+			// Ledge direction
+			if(o.ground && o.x < this.x + thisHitbox.left)
+				o.ledge = -1;
+				
+			if(o.ground && o.x > this.x + thisHitbox.right)
+				o.ledge = 1;
+		
+			// Going down
+			if(o.y_speed > 0)
+			{
+				// Land the player
+				if(!o.ground)
+				{
+					// Stop falling
+					o.y_speed = 0;
+				
+					// Transfer speed
+					if(!o.ground)
+						o.ground_speed = o.x_speed;
+				
+					o.ground = true;	
+					o.landed = true;
+				}
+			}
+		}
+		
+		return true;
+	}
+	
+}
 // ===========================================================================================================
 // Utilities internal functions
 // ===========================================================================================================

@@ -102,8 +102,7 @@ function player_collision(){
 		}
 			
 		//Detach off the ground
-		if(!line_check(hitbox_w, hitbox_h+detach_distance, true) && !line_check(0, hitbox_h+detach_distance, true) && !line_check(-hitbox_w, hitbox_h+detach_distance, true) &&
-		!check_object(wall_w, 0, wall_w, hitbox_h+8, true) && !force_roll && detach_allow && !on_object)
+		if(!line_check(hitbox_w, hitbox_h+detach_distance, true) && !line_check(0, hitbox_h+detach_distance, true) && !line_check(-hitbox_w, hitbox_h+detach_distance, true) && !force_roll && detach_allow && !on_object)
 		{
 			ground = false;	
 			ground_angle = 0;

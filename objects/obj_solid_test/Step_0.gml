@@ -3,6 +3,6 @@
 	var p = instance_find(obj_player, 0);
 	
 	var myEpicBox = new instance_hitbox(-16, -16, 16, 16);
-	instance_act_solid(p, [-p.wall_w, -p.hitbox_h, p.wall_w, p.hitbox_h]);
+	instance_act_semi_solid(p, [-p.wall_w, -p.hitbox_h, p.wall_w, p.hitbox_h]);
 	
-	
+	depth = p.depth + 10;
