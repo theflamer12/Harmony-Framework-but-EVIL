@@ -20,43 +20,41 @@ function instance_act_solid(o, hitbox_other = noone, this = id, this_hitbox = no
 	otherHitbox = _instance_orient_hitbox(o, otherHitbox);
 	
 	// Horizontal collision
-	var cenX = this.x + (thisHitbox.right + thisHitbox.left) * 0.5;
-	if(o.x <= cenX)
+	if(this.y + thisHitbox.top < o.y + otherHitbox.bottom && this.y + thisHitbox.bottom > o.y + otherHitbox.top)
 	{
-		if(o.x + otherHitbox.right + 1 >= this.x + thisHitbox.left &&
-		this.y + thisHitbox.top < o.y + otherHitbox.bottom && 
-		this.y + thisHitbox.bottom > o.y + otherHitbox.top)	
+		var cenX = this.x + (thisHitbox.right + thisHitbox.left) * 0.5;
+		if(o.x <= cenX)
 		{
-			sideH = C_LEFT;
-			colX = this.x + (thisHitbox.left - otherHitbox.right) - 1;
+			if(o.x + otherHitbox.right + 1 >= this.x + thisHitbox.left)
+			{
+				sideH = C_LEFT;
+				colX = this.x + (thisHitbox.left - otherHitbox.right) - 1;
+			}
+		} 
+		else if(o.x + otherHitbox.left <= this.x + thisHitbox.right)
+		{
+			sideH = C_RIGHT;
+			colX = this.x + (thisHitbox.right - otherHitbox.left);
 		}
-	} 
-	else if(o.x + otherHitbox.left <= this.x + thisHitbox.right &&
-	this.y + thisHitbox.top < o.y + otherHitbox.bottom && 
-	this.y + thisHitbox.bottom > o.y + otherHitbox.top)	
-	{
-		sideH = C_RIGHT;
-		colX = this.x + (thisHitbox.right - otherHitbox.left);
 	}
 	
 	// Vertical collision
 	var cenY = this.y + (thisHitbox.top + thisHitbox.bottom) * 0.5;
-	if(o.y < cenY)
+	if(this.x + thisHitbox.left < o.x + otherHitbox.right && this.x + thisHitbox.right > o.x + otherHitbox.left)
 	{
-		if(o.y + otherHitbox.bottom + 1 >= this.y + thisHitbox.top &&
-		this.x + thisHitbox.left < o.x + otherHitbox.right &&
-		this.x + thisHitbox.right > o.x + otherHitbox.left)
+		if(o.y < cenY)
 		{
-			sideV = C_TOP;	
-			colY = this.y + (thisHitbox.top - otherHitbox.bottom) - 1;
+			if(o.y + otherHitbox.bottom + 1 >= this.y + thisHitbox.top)
+			{
+				sideV = C_TOP;	
+				colY = this.y + (thisHitbox.top - otherHitbox.bottom) - 1;
+			}
+		} 
+		else if(o.y + otherHitbox.top <= this.y + thisHitbox.bottom)
+		{
+			sideV = C_BOTTOM;	
+			colY = this.y + (thisHitbox.bottom - otherHitbox.top);
 		}
-	} 
-	else if(o.y + otherHitbox.top <= this.y + thisHitbox.bottom &&
-	this.x + thisHitbox.left < o.x + otherHitbox.right &&
-	this.x + thisHitbox.right > o.x + otherHitbox.left)
-	{
-		sideV = C_BOTTOM;	
-		colY = this.y + (thisHitbox.bottom - otherHitbox.top);
 	}
 	
 	// Temps
@@ -161,6 +159,79 @@ function instance_act_semi_solid(o, hitbox_other = noone, this = id, this_hitbox
 	}
 	
 }
+
+function instance_collide(o, hitbox_other = noone, this = id, this_hitbox = noone)
+{
+		// Temps
+	var sideH = 0;
+	var sideV = 0;
+	var colX = o.x;
+	var colY = o.y;
+	
+	// Make hitboxes
+	var thisHitbox = _instance_evaluate_hitbox(this, this_hitbox);
+	var otherHitbox = _instance_evaluate_hitbox(o, hitbox_other);
+	
+	// Orientate hitboxes depending on scale
+	thisHitbox = _instance_orient_hitbox(this, thisHitbox);
+	otherHitbox = _instance_orient_hitbox(o, otherHitbox);
+	
+	// Horizontal collision
+	if(this.y + thisHitbox.top < o.y + otherHitbox.bottom && this.y + thisHitbox.bottom > o.y + otherHitbox.top)
+	{
+		var cenX = this.x + (thisHitbox.right + thisHitbox.left) * 0.5;
+		if(o.x <= cenX)
+		{
+			if(o.x + otherHitbox.right >= this.x + thisHitbox.left)
+			{
+				sideH = C_LEFT;
+				colX = this.x + (thisHitbox.left - otherHitbox.right) - 1;
+			}
+		} 
+		else if(o.x + otherHitbox.left <= this.x + thisHitbox.right)
+		{
+			sideH = C_RIGHT;
+			colX = this.x + (thisHitbox.right - otherHitbox.left);
+		}
+	}
+	
+	// Vertical collision
+	if(this.x + thisHitbox.left < o.x + otherHitbox.right && this.x + thisHitbox.right > o.x + otherHitbox.left)
+	{
+		var cenY = this.y + (thisHitbox.top + thisHitbox.bottom) * 0.5;
+		if(o.y < cenY)
+		{
+			if(o.y + otherHitbox.bottom >= this.y + thisHitbox.top)
+			{
+				sideV = C_TOP;	
+				colY = this.y + (thisHitbox.top - otherHitbox.bottom) - 1;
+			}
+		} 
+		else if(o.y + otherHitbox.top <= this.y + thisHitbox.bottom)
+		{
+			sideV = C_BOTTOM;	
+			colY = this.y + (thisHitbox.bottom - otherHitbox.top);
+		}
+	}
+	
+	// Temps
+	var side = 0;
+	var deltaX = colX - o.x;
+	var deltaY = colY - o.y;
+	 
+	// Get the correct collision side
+	if((deltaX * deltaX >= deltaY * deltaY && (sideV || !sideH)) || (!sideH && sideV))
+	{
+		side = sideV;	
+	}
+	else
+	{
+		side = sideH;	
+	}
+	
+	return side;
+}
+
 // ===========================================================================================================
 // Utilities internal functions
 // ===========================================================================================================
