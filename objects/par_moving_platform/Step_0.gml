@@ -58,7 +58,7 @@
 				collision_flag = false
 			}
 			fall_offset += fall_speed
-			if (!on_screen() && !origin_on_screen(last_x, last_y, sprite_width + 16, sprite_height + 16)) {
+			if (!on_screen() && !origin_on_screen(sprite_width + 16, sprite_height + 16, last_x, last_y)) {
 				//reset to return back to normal
 				collision_flag = true
 				fall_timer = 61
