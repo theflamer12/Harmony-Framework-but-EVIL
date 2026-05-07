@@ -106,6 +106,7 @@
 		if(timer = 110)
 		{
 			reset_stage_data();
+			reset_background_visibility();
 			room_goto(obj_level.next_level);
 		}
 	}

@@ -9,7 +9,6 @@ function camera_boundaries(){
 	
 	var by = abs(floor(target_y - previous_y));
 	
-	
 	//Limit bottom
 	if(limit_bottom > target_bottom)
 	{

@@ -1,12 +1,11 @@
 {
   "$GMObject":"",
-  "%Name":"obj_aaz_bg",
+  "%Name":"obj_aaz_bg_outside",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_aaz_bg",
+  "name":"obj_aaz_bg_outside",
   "overriddenProperties":[],
   "parent":{
     "name":"Arboreal Agate",

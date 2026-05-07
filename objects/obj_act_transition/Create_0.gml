@@ -19,16 +19,32 @@
 	sign_pos[0] = obj_signpost.x - marker.x;
 	sign_pos[1] = obj_signpost.y - marker.y;
 	
-	//Storing background oh no
-	with(par_background)
+	//Storing background offsets oh no
+	//I'm using structs here because ds maps and ds lists suck!!!
+	background_store = {};
+	for (var i = 0; i < instance_number(par_background); ++i)
 	{
-		for(var i = 0; i < bg_id; i++)
-		{
-			global.diff_store_x[i] = diff_x[i]
-			global.diff_store_y[i] = diff_y[i]
+		var bg = instance_find(par_background, i);
+		var name = object_get_name(bg.object_index);
+		
+		//Duplicate background check
+		if(variable_struct_exists(background_store, name)) continue;
+		
+		var data = {
+			list_x: [],
+			list_y: []
+		};
+		
+		for (var n = 0; n < bg.bg_id; ++n) {
+			array_push(data.list_x, bg.diff_x[n]);
+			array_push(data.list_y, bg.diff_y[n]);
 		}
+		variable_struct_set(background_store, name, data);
 	}
 	
+	//Store bg visibility
+	save_background_visibility();
+
 	//Store monitors
 	monitor_len = array_length(global.monitor_store);
 	

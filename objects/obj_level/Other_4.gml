@@ -15,6 +15,26 @@
 		global.stage_timer = global.time_store;
 	}
 	
+	var force_visible_for_new_keys = (global.bonus_stage_state == BONUSSTAGE.GOING_TO || array_length(variable_struct_get_names(global.store_background_visibility)) == 0);
+
+	for (var i = 0; i < instance_number(par_background); ++i)
+	{
+		var bg = instance_find(par_background, i);
+		var name = object_get_name(bg.object_index);
+		
+		if (variable_struct_exists(global.store_background_visibility, name)) 
+		{
+			bg.visible = global.store_background_visibility[$ name];
+			continue; 
+		}
+		
+		global.store_background_visibility[$ name] = force_visible_for_new_keys ? bg.visible : false;
+		
+		bg.visible = global.store_background_visibility[$ name];
+	}
+	
+	show_debug_message(global.store_background_visibility);
+	
 	if !ds_map_exists(global.red_ring_map,stage_name) {
 		ds_map_add(global.red_ring_map,stage_name,array_create(red_ring_count))
 	}

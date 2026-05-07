@@ -9,3 +9,4 @@ score_life = 16;
 animator = new animator_create();
 animation_add(BUMPERANI.STOPPED, spr_bumper, 0.2);
 animation_add(BUMPERANI.BUMP, spr_bumper_bumped, 0.5);
+animation_play(animator, BUMPERANI.STOPPED);

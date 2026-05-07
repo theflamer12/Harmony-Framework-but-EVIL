@@ -189,6 +189,7 @@
 				
 				//Reset the stage data
 				reset_stage_data();
+				reset_background_visibility();
 				
 				//Go to the room
 				room_goto(scene_room[category_select + 1][scene_select]);

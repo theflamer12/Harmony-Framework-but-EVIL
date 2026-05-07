@@ -20,6 +20,9 @@
 		//Store checkpoint timer
 		global.time_store = global.stage_timer;
 		
+		//Store backgrounds for next respawn
+		save_background_visibility();
+		
 		//Store checkpoint ID so all checkpoints can be active during the start
 		ds_list_add(global.checkpoint, id);
 		

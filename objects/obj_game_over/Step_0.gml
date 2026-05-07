@@ -39,6 +39,7 @@
 		if(type = 0)
 		{
 			reset_stage_data();
+			reset_background_visibility();
 			game_restart();
 		}else // Time over event
 		{

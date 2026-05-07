@@ -25,8 +25,8 @@
 	camera_y = obj_player.y;			//Vertical position of the screen
 	target_x = obj_player.x;			//Horizontal position of the target
 	target_y = obj_player.y;			//Vertical position of the target
-	previous_x = 0;						//Previous horizontal position of the camera
-	previous_y = 0;						//Previous vertical position of the camera
+	previous_x = target_x;				//Previous horizontal position of the camera
+	previous_y = target_y;				//Previous vertical position of the camera
 	knux_offset_x = 0;					//Target horizontal position for knuckles ledge climb
 	knux_offset_y = 0;					//Target vertical position for knuckles ledge climb
 	

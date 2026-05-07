@@ -8,7 +8,8 @@
 		shield : S_NONE,
 		combinering : 0,
 		rings : 0
-	}
+	};
+	global.store_background_visibility = {};
 	
 	#macro DEVMODE false
 	#macro Dev:DEVMODE true
