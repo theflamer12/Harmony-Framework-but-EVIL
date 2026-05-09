@@ -3,7 +3,7 @@
 	var p = instance_find(obj_player, 0);
 	
 	var myEpicBox = new instance_hitbox(-16, -16, 16, 16);
-	var a = instance_collide(p, [-p.wall_w, -p.hitbox_h, p.wall_w, p.hitbox_h]);
+	var a = player_act_solid()
 	
 	if(a)
 	{
@@ -11,3 +11,6 @@
 	}
 	
 	depth = p.depth + 10;
+	
+	if(!on_screen())
+		instance_deactivate_object(id)

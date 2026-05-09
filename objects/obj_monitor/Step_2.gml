@@ -3,23 +3,25 @@
 	collision_flag = true;
 	
 	//Get colliding player
-	var player = instance_nearest(x, y, obj_player);
+	var player = player_find(0);
+	var col = noone;
 	
 	//Disable flag when attacking
 	if(player)
 	{
+		
 		if(sign(image_yscale) == 1)
 		{
-			if(player.attacking && player.y_speed >= 0 && player.state != player_state_spindash || player.y + player.hitbox_h > bbox_top && player.state == player_state_spindash)
+			if(!player.attacking && player.state != player_state_spindash && player.state != player_state_roll && !destroyed)
 			{
-				collision_flag = false;
+				col = player_act_solid();
 			}
 		}
 		else
 		{
 			if(player.attacking && player_collide_object(C_TOP_EXT))
 			{
-				collision_flag = false;
+
 			}
 		}
 	}
@@ -45,7 +47,7 @@
 		}
 		
 		//Destroy the monitor
-		if(player_collide_object(C_MAIN) && !collision_flag && player.y < bbox_bottom-1)
+		if(player_collide_object(C_MAIN))
 		{
 			destroyed = true;
 			ground = false;

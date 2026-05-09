@@ -14,13 +14,39 @@ function player_reposition_mode(force_mode = -1)
 	y_dir = dcos(90 * true_mode);
 }
 
-function player_hurt(hazard_x = x)
+function player_hurt(hazard_x = x, player_id = 0)
 {
-	with(obj_player)
+	with(player_find(player_id))
 	{
-		hurt_position = hazard_x;
-		knockout_type = K_HURT;
+		if(invincible_timer == 0)
+		{
+			hurt_position = hazard_x;
+			knockout_type = K_HURT;
+		}
 	}
+}
+
+function player_find(player_id)
+{
+	return instance_find(obj_player, player_id);	
+}
+
+function player_get_hitbox(player_id)
+{
+	var player = instance_find(obj_player, player_id);
+	var hitbox = new instance_hitbox();
+	
+	hitbox.left = -player.wall_w;
+	hitbox.right = player.wall_w;
+	hitbox.top = -player.hitbox_h;
+	hitbox.bottom = player.hitbox_h;
+	
+	return hitbox;
+}
+
+function player_act_solid(this_hitbox = -1, player_id = 0)
+{
+	return instance_act_solid(player_find(player_id), player_get_hitbox(player_id), id, this_hitbox);
 }
 
 function player_react_solid(result)

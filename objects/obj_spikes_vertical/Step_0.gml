@@ -1,15 +1,15 @@
 /// @description Hurt player
-	if(obj_player.invincible_timer != 0) 
-	{
-		exit;
-	}
 	
 	//Get the center of the hitbox
 	var center_x = bbox_left + (bbox_right - bbox_left) / 2;
+	var col = player_act_solid();
 	
 	//Hurt the player
-	if(player_collide_object(C_BOTTOM) && image_yscale = 1 || player_collide_object(C_TOP) && image_yscale = -1 )
+	if(col == (sign(image_yscale) == 1 ? C_TOP : C_BOTTOM))
 	{
-		play_sound(sfx_spike);
+		var player = player_find(0)
+		if(player.invincible_timer == 0)
+			play_sound(sfx_spike);
+		
 		player_hurt(center_x);
 	}

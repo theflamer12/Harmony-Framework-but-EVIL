@@ -89,7 +89,12 @@ function instance_act_solid(o, hitbox_other = noone, this = id, this_hitbox = no
 	{
 		// If the other object is the player, then execute player's reaction to solid object
 		if(isPlayer)
+		{
+			if(o.debug || !o.collision_allow)
+				return 0;
+		
 			player_react_solid(r);
+		}
 		else
 			_instance_react_solid(r);
 	}
