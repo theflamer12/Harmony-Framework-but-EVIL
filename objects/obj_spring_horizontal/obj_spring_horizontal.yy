@@ -2,7 +2,7 @@
   "$GMObject":"",
   "%Name":"obj_spring_horizontal",
   "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":1,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
@@ -13,10 +13,7 @@
     "name":"Springs",
     "path":"folders/Objects/Stage Objects/Common Objects/Springs.yy",
   },
-  "parentObjectId":{
-    "name":"par_solid_object",
-    "path":"objects/par_solid_object/par_solid_object.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -35,6 +32,7 @@
         "\"Yellow\"",
         "\"Red\"",
       ],"multiselect":false,"name":"spring_type","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"\"Yellow\"","varType":6,},
+    {"$GMObjectProperty":"v2","%Name":"detach_sides","filters":[],"listItems":[],"multiselect":false,"name":"detach_sides","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

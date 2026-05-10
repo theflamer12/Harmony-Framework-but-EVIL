@@ -65,7 +65,7 @@ function player_react_solid(result)
 		o.y = colY;	
 		
 		// Flag player as on object
-		if(side == C_TOP)
+		if(side == C_TOP && o.mode == 0)
 		{
 			o.on_object = true;
 			

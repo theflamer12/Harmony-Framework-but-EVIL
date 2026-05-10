@@ -7,33 +7,38 @@
 	var col = noone;
 	
 	//Disable flag when attacking
-	if(player)
-	{
-		
-		if(sign(image_yscale) == 1)
-		{
-			if(!player.attacking && player.state != player_state_spindash && player.state != player_state_roll && !destroyed)
-			{
-				col = player_act_solid();
-			}
-		}
-		else
-		{
-			if(player.attacking && player_collide_object(C_TOP_EXT))
-			{
 
-			}
-		}
-	}
 
 	
 	//When monitor isn't destroyed
 	if(!destroyed)
 	{
-		//Bump the monitor
-		if(player_collide_object(C_TOP) && sign(image_yscale) == 1)
+		if(player)
 		{
-			collision_flag = false;
+			if(sign(image_yscale) == 1)
+			{
+				if(player.attacking && player.y_speed >= 0 && player.state != player_state_spindash)
+				{
+					collision_flag = false;
+				}
+			}
+			else
+			{
+				if(player.attacking && player_collide_object(C_TOP_EXT))
+				{
+					collision_flag = false;
+				}
+			}
+		}
+		
+		if(collision_flag)
+		{
+			col = player_act_solid();
+		}
+		
+		//Bump the monitor
+		if(col == C_BOTTOM && sign(image_yscale) == 1)
+		{
 			ground = false;
 			y_speed = -2;	
 			
@@ -47,7 +52,7 @@
 		}
 		
 		//Destroy the monitor
-		if(player_collide_object(C_MAIN))
+		if(player_collide_object())
 		{
 			destroyed = true;
 			ground = false;
@@ -56,7 +61,8 @@
 			create_effect(x, y, spr_effect_explosion01, 0.3);
 			play_sound(sfx_destroy);
 			
-			if (!instance_exists(obj_bonus_level)) {
+			if(!instance_exists(obj_bonus_level)) 
+			{
 				global.store_object_state[| id] = true
 			}
 			

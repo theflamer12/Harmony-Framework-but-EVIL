@@ -41,8 +41,8 @@
     "path":"sprites/spr_spring_diagonal_yellow/spr_spring_diagonal_yellow.yy",
   },
   "spriteMaskId":{
-    "name":"spr_spring_diagonal_mask",
-    "path":"sprites/spr_spring_diagonal_mask/spr_spring_diagonal_mask.yy",
+    "name":"spr_spring_diagonal_yellow",
+    "path":"sprites/spr_spring_diagonal_yellow/spr_spring_diagonal_yellow.yy",
   },
   "visible":true,
 }

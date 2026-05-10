@@ -1,5 +1,5 @@
 	/// @description On wall spring event
-	
+	/*
 	//Facing upwards
 	if(sign(image_yscale) = 1)
 	{

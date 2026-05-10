@@ -2,49 +2,54 @@
 	//Update the animator
 	animator_update(animator);
 	
-	//Facing upwards
-	if(sign(image_yscale) = 1)
+	var c = player_act_solid();
+	var player = player_find(0);
+	var m = detach_sides ? 0 : player.mode;
+	
+	if(c == C_TOP && sign(image_yscale) == 1)
 	{
-		//Hit from the bottom
-		if(player_collide_object(C_BOTTOM) && obj_player.y_speed >= 0 && obj_player.mode == 0)
+		animator.animation_finished = false;
+		triggered = true;
+		
+		switch(m)
 		{
-			//Spring code
-			animator.animation_finished = false;
-			triggered = true;
-			play_sound(sfx_spring);
+			case 0:
+			player.ground = false;
+			player.y_speed = -spring_power;
+			player.state = player_state_spring;
+			break;
 			
-			//Player stuff
-			var player = instance_nearest(x, y, obj_player)
-			with(player)
-			{
-				animation_play(animator, ANIM.SPRING);
-				state = player_state_spring;
-				y_speed = -other.spring_power;
-				ground = false;
-			}
+			case 1:
+			case 3:
+			player.facing = player.x_dir;
+			player.ground_speed = spring_power * player.x_dir;
+			break;
 		}
+		
+		play_sound(sfx_spring);
 	}
 	
-		//Facing upwards
-	if(sign(image_yscale) = -1)
-	{		
-		//Hit from the bottom
-		if(player_collide_object(C_TOP) && obj_player.mode == 0)
+	if(c == C_BOTTOM && sign(image_yscale) == -1)
+	{
+		animator.animation_finished = false;
+		triggered = true;
+		
+		switch(m)
 		{
-			//Spring code
-			animator.animation_finished = false;
-			triggered = true;
-			play_sound(sfx_spring);
+			case 0:
+			player.ground = false;
+			player.y_speed = spring_power;
+			player.state = player_state_normal;
+			break;
 			
-			//Player stuff
-			var player = instance_nearest(x, y, obj_player)
-			with(player)
-			{
-				state = player_state_spring;
-				y_speed = other.spring_power;
-				ground = false;
-			}
+			case 1:
+			case 3:
+			player.facing = -player.x_dir;
+			player.ground_speed = -spring_power * player.x_dir;
+			break;
 		}
+		
+		play_sound(sfx_spring);
 	}
 	
 	//Stop the animation

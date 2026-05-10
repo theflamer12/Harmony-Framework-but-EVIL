@@ -18,7 +18,7 @@
 	
 
 	//Hit from the bottom
-	if(player_collide_object(C_MAIN) && !triggered && !inside_trigger)
+	if(player_collide_object() && !triggered && !inside_trigger)
 	{
 		//Spring code
 		animator.animation_finished = false;
@@ -46,7 +46,7 @@
 	}
 	
 	//Reset the inside trigger
-	if(!player_collide_object(C_MAIN))
+	if(!player_collide_object())
 	{
 		inside_trigger = false;
 	}
