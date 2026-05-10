@@ -271,6 +271,7 @@
     {"id":{"name":"obj_water_run","path":"objects/obj_water_run/obj_water_run.yy",},},
     {"id":{"name":"obj_water","path":"objects/obj_water/obj_water.yy",},},
     {"id":{"name":"obj_window","path":"objects/obj_window/obj_window.yy",},},
+    {"id":{"name":"Object147","path":"objects/Object147/Object147.yy",},},
     {"id":{"name":"par_background","path":"objects/par_background/par_background.yy",},},
     {"id":{"name":"par_badnik","path":"objects/par_badnik/par_badnik.yy",},},
     {"id":{"name":"par_breakable_floor","path":"objects/par_breakable_floor/par_breakable_floor.yy",},},
