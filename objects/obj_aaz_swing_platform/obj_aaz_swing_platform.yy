@@ -4,17 +4,12 @@
   "eventList":[],
   "managed":true,
   "name":"obj_aaz_swing_platform",
-  "overriddenProperties":[
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"par_solid_object","path":"objects/par_solid_object/par_solid_object.yy",},"propertyId":{"name":"collision_type","path":"objects/par_solid_object/par_solid_object.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"\"Semi Solid\"",},
-  ],
+  "overriddenProperties":[],
   "parent":{
     "name":"Arboreal Agate",
     "path":"folders/Objects/Stage Objects/Arboreal Agate.yy",
   },
-  "parentObjectId":{
-    "name":"par_solid_object",
-    "path":"objects/par_solid_object/par_solid_object.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

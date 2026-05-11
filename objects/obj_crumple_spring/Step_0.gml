@@ -1,10 +1,17 @@
 /// @description Script
+	var c = noone;
+	
+	if(collision_flag)
+		c = player_act_semi_solid();
+	
+	
+	
 	//Update the animator
 	if (!crumple) {
 		animator_update(animator);
 	
 		//Hit from the bottom
-		if(player_collide_object(C_BOTTOM) && obj_player.y_speed >= 0 && collision_flag)
+		if(c && obj_player.y_speed >= 0 && collision_flag)
 		{
 			//Spring code
 			animator.animation_finished = false;

@@ -3,6 +3,7 @@
   "%Name":"obj_capsule_button",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
   "name":"obj_capsule_button",
@@ -11,10 +12,7 @@
     "name":"Stage End",
     "path":"folders/Objects/Stage Objects/Common Objects/Stage End.yy",
   },
-  "parentObjectId":{
-    "name":"par_solid_object",
-    "path":"objects/par_solid_object/par_solid_object.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

@@ -38,7 +38,7 @@ function player_state_wallclimb(){
 	//When there's no more wall
 	if(!point_check((wall_w + 1) * facing, wall_h, false))
 	{
-		if(!check_object(wall_w + 2, hitbox_h, wall_w + 2, hitbox_h) && !point_check((wall_w + 1) * facing, -4))
+		if(!point_check((wall_w + 1) * facing, -4))
 		{
 			//If using smooth scroll
 			if(global.knux_camera_smooth)
@@ -54,7 +54,7 @@ function player_state_wallclimb(){
 			exit;
 		}
 		
-		if(!point_check((wall_w + 1) * facing, 4) || check_object(wall_w + 2, hitbox_h, wall_w + 2, hitbox_h))
+		if(!point_check((wall_w + 1) * facing, 4))
 		{
 			state = player_state_knuxfall;
 			exit;

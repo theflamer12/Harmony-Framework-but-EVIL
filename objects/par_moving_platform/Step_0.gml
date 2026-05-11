@@ -2,7 +2,8 @@
 	//Temp values
 	var old_x, old_y;
 	
-	var col = player_collide_object(C_BOTTOM);
+	var col = player_act_semi_solid();
+	var p = player_find(0);
 	
 	//Get previous position values
 	old_x = round(x);
@@ -51,10 +52,10 @@
 		
 		if fall_timer < 0 {
 			fall_speed += 0.21875
-			if (fall_timer < -30 && col && col.ground) {
+			if (fall_timer < -30 && col && p.ground) {
 				//eject player off after falling for too long
-				col.ground = false
-				col.y_speed = fall_speed
+				p.ground = false
+				p.y_speed = fall_speed
 				collision_flag = false
 			}
 			fall_offset += fall_speed
@@ -69,8 +70,8 @@
 		}
 	}
 	
-		//Sink the platform
-	if(sink && col && col.ground)
+	//Sink the platform
+	if(sink && col && p.ground)
 	{
 		sink_offset = lerp(sink_offset, 8, 0.2);
 	}else
@@ -79,10 +80,11 @@
 	}
 	
 	//Move the player
-	if(col && col.ground)
+	if(col && p.ground)
 	{
-		col.x += round(x - old_x);
-		col.y += round(y - old_y);
+		p.x += round(x - old_x);
+		p.y += round(y - old_y);	
+		p.y = round(p.y);
 	}
 	
 	//Move the objects

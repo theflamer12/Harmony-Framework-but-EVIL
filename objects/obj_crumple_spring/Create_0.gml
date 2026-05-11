@@ -2,6 +2,8 @@
 	triggered = false;
 	crumple = false;
 	fall_speed = 0
+	collision_flag = true;
+	
 	//Create the new animator
 	animator = new animator_create();
 

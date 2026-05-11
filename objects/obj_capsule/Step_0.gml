@@ -1,9 +1,16 @@
 /// @description Capsule script
-
+	
+	player_act_solid();
+	
 	//Button code
 	with(button){
+		var c = player_act_solid();
+		
 		//When player is on the button
-		if(player_collide_object(C_BOTTOM) && !pressed){
+		if(c == C_TOP && !pressed)
+		{
+			obj_player.y = round(bbox_top - obj_player.hitbox_h);
+			
 			//Stop the timer
 			input_disable = true;
 			
@@ -34,7 +41,14 @@
 		}
 		
 		//Move the button
-		if(pressed) y = lerp(y, ystart+8, 0.2) else y = lerp(y, ystart, 0.2); 
+		if(pressed) 
+		{
+			y = lerp(y, ystart+8, 0.2)
+		}
+		else
+		{
+			y = lerp(y, ystart, 0.2); 
+		}
 	}
 	
 	if(active){

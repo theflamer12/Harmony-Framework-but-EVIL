@@ -49,6 +49,15 @@ function player_act_solid(this_hitbox = -1, player_id = 0)
 	return instance_act_solid(player_find(player_id), player_get_hitbox(player_id), id, this_hitbox);
 }
 
+function player_act_semi_solid(this_hitbox = -1, player_id = 0)
+{
+	var p = player_find(player_id);
+	if(p.debug || !p.collision_allow)
+		return 0;
+				
+	return instance_act_semi_solid(p, player_get_hitbox(player_id), id, this_hitbox);
+}
+
 function player_react_solid(result)
 {
 	// Get values from the struct

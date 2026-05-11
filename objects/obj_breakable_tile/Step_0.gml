@@ -32,7 +32,7 @@
 		
 		case 1:
 		case 2:
-			if(obj_player.state != player_state_spindash && obj_player.attacking && obj_player.y + obj_player.hitbox_h <= y && obj_player.y_speed >= 0)
+			if(obj_player.state != player_state_spindash && obj_player.attacking && obj_player.y_speed >= 0)
 			{
 				collision_flag = false;	
 			}
@@ -45,9 +45,11 @@
 		break;	
 	}
 	
-	
+	if(collision_flag)
+		player_act_solid()
+		
 	//Destroy the wall
-	if(player_collide_object(C_MAIN))
+	if(player_collide_object())
 	{
 		switch(breakable_type)
 		{

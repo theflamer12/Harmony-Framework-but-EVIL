@@ -24,6 +24,7 @@
 	//When you land on it
 	max_dip *= stand_offset;
 	
+	var c = player_act_semi_solid();
 	
 	//Log code
 	for (var i = 0; i < log_amount; ++i){
@@ -53,7 +54,7 @@
 	}
 	
 	//Player standing on the bridge
-	if(player_collide_object(C_BOTTOM_EXT) && player.mode = 0 && player.ground)
+	if(c && player.mode = 0 && player.ground)
 	{
 		//Bubble shield effect
 		if(instance_exists(obj_bubble_shield) && obj_bubble_shield.shield_state = 1 && player.ground)

@@ -1,33 +1,14 @@
 /// @description Player scripts
-	
-	//Step movement for sticking on the collision
-	steps = 1 + abs(floor(x_speed/13)) + abs(floor(y_speed/13));
-	
-	//Reset landing flag
-	if(ground)
-	{
-		landed = false;
-	}
-	
-	//Set angle sensor reach range
-	if(!landed)
-	{
-		reach_range = 16;
-	}
 
 	//Cancel when in debug mode
 	if(debug)
 	{
-		player_debug();
 		exit;	
 	}
 	
 	//Include step movement
 	repeat(steps)
 	{
-		//Handle player movement:
-		player_movement();
-		
 		//Handle semi solid:
 		player_semisolids();
 		

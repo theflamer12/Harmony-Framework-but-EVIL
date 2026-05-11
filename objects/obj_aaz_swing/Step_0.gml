@@ -12,6 +12,9 @@
 	//Platform code here
 	with(platform)
 	{
+		// Make the platform semi solid
+		var c = player_act_semi_solid();
+		
 		//Set previous position
 		old_x = x;
 		old_y = y;
@@ -25,7 +28,7 @@
 		diff_y = floor(y) - floor(old_y);
 		
 		//Move the player
-		if(obj_player.ground && player_collide_object(C_BOTTOM_EXT))
+		if(obj_player.ground && c)
 		{
 			obj_player.x += floor(diff_x);	
 			obj_player.y += floor(diff_y);	

@@ -4,12 +4,18 @@
 
 	with(child_right)
 	{
-		if(player_collide_object(C_BOTTOM_EXT) && obj_player.ground)
+		y = other.y+64+other.weight;
+		
+		// Make the platform semi solid
+		var c = player_act_semi_solid();
+		
+		if(c && obj_player.ground)
 		{
 			other.right_override = true;
-			obj_player.y +=6;
+			//obj_player.y +=6;
+			obj_player.y = y - obj_player.hitbox_h - 1;
 		}
-		y = other.y+64+other.weight;
+		
 	}
 
 	with(child_weight)
@@ -54,14 +60,16 @@
 
 	with(child_left)
 	{
-		if(player_collide_object(C_BOTTOM_EXT) && other.child_weight.ground && obj_player.ground)
+		// Make the platform semi solid
+		var c = player_act_semi_solid();
+		
+		if(c && other.child_weight.ground && obj_player.ground)
 		{
 			if(other.bouncing = false)
 			{
 				other.child_weight.ground = false;
 				other.child_weight.yspeed = -8;
 				if(on_screen()) play_sound(sfx_spring);
-				obj_player.y +=6;
 			}
 			else
 			{
@@ -75,7 +83,10 @@
 				}
 				if(on_screen()) play_sound(sfx_spring);
 			} 
+			obj_player.y = y - obj_player.hitbox_h - 1;
 		}
+		
+		
 		y = other.y+64-other.weight
 	}
 

@@ -130,7 +130,7 @@ function player_state_normal(){
 	
 	
 	//Ledge animation
-	if(!line_check(0, hitbox_h + 16, true) && !check_object(0, 0, 1, hitbox_h + 8, true) && ground && ground_speed == 0)
+	if(!line_check(0, hitbox_h + 16, true) && ground && ground_speed == 0)
 	{
 		//Change animation
 		if(!line_check(hitbox_w, hitbox_h + 16, true) && !on_object || ledge == 1)

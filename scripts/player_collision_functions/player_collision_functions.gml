@@ -83,6 +83,8 @@ function angle_sensor(X, Y){
 
 function check_object(x1, y1, x2, y2, semi_solid = false)
 {
+	// DEPRECATED
+	
 	//Disable collision
 	if(!collision_allow) exit;
 	

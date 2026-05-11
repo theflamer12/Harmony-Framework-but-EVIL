@@ -13,10 +13,7 @@
     "name":"Arboreal Agate",
     "path":"folders/Objects/Stage Objects/Arboreal Agate.yy",
   },
-  "parentObjectId":{
-    "name":"par_solid_object",
-    "path":"objects/par_solid_object/par_solid_object.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

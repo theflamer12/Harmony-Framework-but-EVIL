@@ -120,7 +120,7 @@ function instance_act_semi_solid(o, hitbox_other = noone, this = id, this_hitbox
 	
 	var isColliding = (this.x + thisHitbox.left < o.x + otherHitbox.right) &&
 		(this.x + thisHitbox.right > o.x + otherHitbox.left) &&
-		o.y_speed >= 0 && otherEdge >= platformTop && otherEdgePrev <= platformBottom;
+		o.y_speed >= 0 && otherEdge >= platformTop - 1 && otherEdgePrev <= platformBottom;
 		
 	if(isColliding)
 	{
