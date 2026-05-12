@@ -28,7 +28,7 @@ function player_inv_speed(){
 		if(invincible)
 		{
 			if (obj_music.play_data[Jingle] != "j_invincible" && speed_shoes == 0) {
-				play_music(MUSIC.J_INVINCIBLE, Jingle);	
+				
 			}
 		
 			if(!instance_number(obj_invinciblespark))
@@ -38,7 +38,7 @@ function player_inv_speed(){
 		}
 	
 		if (speed_shoes > 0 && obj_music.play_data[Jingle] != "j_speedshoe") {
-			play_music(MUSIC.J_SPEEDSHOE, Jingle);		
+			
 		}
 		
 		//return to normal color smoothly if lost super

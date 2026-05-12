@@ -29,10 +29,14 @@
 		case "Invincible":
 			obj_player.invincible = true
 			obj_player.invincible_timer = 1200;
+			if(!audio_is_playing(j_super))
+				play_music(MUSIC.J_INVINCIBLE, Jingle);
 		break;
 		
 		case "Speed Shoes":
 			obj_player.speed_shoes = 1200;
+			if(!audio_is_playing(j_super))
+				play_music(MUSIC.J_SPEEDSHOE, Jingle);	
 		break;
 		
 		case "Eggman":

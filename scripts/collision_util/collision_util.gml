@@ -36,26 +36,6 @@ function collision_point_check(radius_x, radius_y, collision_mode = CMODE_FLOOR,
 		ds_list_destroy(solidCollisions);
 	}
 	
-	//Solid object interaction "par_solid_object"
-	if(collision_point(new_x+radius_x*y_dir+radius_y*x_dir, new_y+radius_y*y_dir+radius_x*-x_dir, par_solid_object, true, true) && solid_object)
-	{
-		//Get the value from the object with what youre coliding
-		var solidCollisions = ds_list_create();
-		var SolidCount = collision_point_list(new_x + radius_x * y_dir + radius_y * x_dir, new_y + radius_y * y_dir + radius_x * -x_dir, par_solid_object, true, true, solidCollisions, false);
-		for (var i = 0; i < SolidCount; i++)
-		{
-			var Solid =  solidCollisions[| i];
-			if(Solid.collision_flag)
-			{
-				if (Solid.collision_type = "Full Solid" || Solid.collision_type = "Semi Solid" && semi_solid)
-				{
-					ds_list_destroy(solidCollisions);
-					return true;
-				}
-			}
-		}
-		ds_list_destroy(solidCollisions);
-	}
 	//Get the size of collision layer array:
 	var a_col = array_length(global.col_tile);
 	
@@ -137,27 +117,6 @@ function collision_line_check(radius_x, radius_y, collision_mode = CMODE_FLOOR, 
 		ds_list_destroy(solidCollisions);
 	}
 	
-	//Collision with solid terrain "par_solid"
-	if(collision_line(floor(x)+X1, floor(y)+Y1, floor(x)+X2, floor(y)+Y2, par_solid_object, true, true) && solid_object)
-	{
-		//Get the value from the object with what youre coliding
-		var solidCollisions = ds_list_create();
-		var SolidCount = collision_line_list(floor(x)+X1, floor(y)+Y1, floor(x)+X2, floor(y)+Y2, par_solid_object, true, true, solidCollisions, false);
-		for (var i = 0; i < SolidCount; i++)
-		{
-			var Solid =  solidCollisions[| i];
-			if(Solid.collision_flag)
-			{
-				if (Solid.collision_type = "Full Solid" || Solid.collision_type = "Semi Solid" && semi_solid)
-				{
-					ds_list_destroy(solidCollisions);
-					return true;
-				}
-			}
-		}
-		ds_list_destroy(solidCollisions);
-	}
-	
 	//Get the size of collision layer array:
 	var a_col = array_length(global.col_tile);
 	
@@ -221,27 +180,6 @@ function collision_instance(offset_x, offset_y, collision_plane = PLANE_A, semi_
 				Solid.collision_type = "Full Solid" && Solid.collision_layer = "Layer A" && collision_plane = 0 ||
 				Solid.collision_type = "Full Solid" && Solid.collision_layer = "Layer B" && collision_plane = 1 ||
 				Solid.collision_type = "Semi Solid" && semi_solid && Solid.platform_check)
-				{
-					ds_list_destroy(solidCollisions);
-					return true;
-				}
-			}
-		}
-		ds_list_destroy(solidCollisions);
-	}
-	
-	//Collision with solid terrain "par_solid"
-	if(instance_place(floor(x) + offset_x, floor(y) + offset_y, par_solid_object) && solid_object)
-	{
-		//Get the value from the object with what youre coliding
-		var solidCollisions = ds_list_create();
-		var SolidCount = instance_place_list(floor(x) + offset_x, floor(y) + offset_y, par_solid_object, solidCollisions, false);
-		for (var i = 0; i < SolidCount; i++)
-		{
-			var Solid =  solidCollisions[| i];
-			if(Solid.collision_flag)
-			{
-				if (Solid.collision_type = "Full Solid" || Solid.collision_type = "Semi Solid" && semi_solid)
 				{
 					ds_list_destroy(solidCollisions);
 					return true;
