@@ -105,7 +105,7 @@
 							}
 						}
 					
-						if (object_get_parent(object_index) = par_badnik && other.fall_timer = 0) {
+						if (other.fall_timer = 0) {
 								attached = false;
 								ds_list_delete(other.attached_list, i);
 						}
