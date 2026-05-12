@@ -1,4 +1,4 @@
-function player_collide_object(side = C_MAIN){
+function player_collide_object(this_hitbox = -1, side = C_MAIN, player_id = 0){
 	//Collision side macros:
 	#macro C_MAIN 0
 	#macro C_BOTTOM 1
@@ -8,85 +8,37 @@ function player_collide_object(side = C_MAIN){
 	#macro C_BOTTOM_EXT 5
 	#macro C_TOP_EXT 6
 	
-	//Temp values:
-	var player, left, top, right, bottom;
-	
 	//Get nearest player object:
-	for (var i = 0; i < instance_number(obj_player); ++i)
+	var p = player_find(player_id);
+	var pBox = player_get_hitbox(player_id);
+	
+	//Define hitbox size:
+	switch(side)
 	{
-		player[i] = instance_find(obj_player, i)
+		//Bottom side of the hitbox:
+		case C_BOTTOM: 
+		pBox.top = 0;
+		break;
 		
-		//Define hitbox size:
-		switch(side)
-		{
-			//Main hitbox:
-			case C_MAIN: 
-				left = -player[i].wall_w;
-				top = -player[i].hitbox_h;
-				right = player[i].wall_w;
-				bottom = player[i].hitbox_h;
-			break;
+		//Top side of the hitbox:
+		case C_TOP: 
+		pBox.bottom = 0;
+		break;
 		
-			//Bottom side of the hitbox:
-			case C_BOTTOM: 
-				left = -player[i].wall_w;
-				top = 0;
-				right = player[i].wall_w;
-				bottom = player[i].hitbox_h + 1;
-			break;
+		//Left side of the hitbox:
+		case C_LEFT: 
+		pBox.right = 0;
+		break;
 		
-			//Bottom side of the hitbox:
-			case C_BOTTOM_EXT: 
-				left = -player[i].wall_w;
-				top = 0;
-				right = player[i].wall_w;
-				bottom = player[i].hitbox_h + 16;
-			break;
-		
-			//Top side of the hitbox:
-			case C_TOP: 
-				left = -player[i].wall_w;
-				top = -player[i].hitbox_h - 1;
-				right = player[i].wall_w;
-				bottom = 0;
-			break;
-		
-			//Top side of the hitbox:
-			case C_TOP_EXT: 
-				left = -player[i].wall_w;
-				top = -player[i].hitbox_h - 16;
-				right = player[i].wall_w;
-				bottom = 0;
-			break;
-		
-			//Left side of the hitbox:
-			case C_LEFT: 
-				left = -player[i].wall_w - 1;
-				top = -player[i].hitbox_h;
-				right = 0;
-				bottom = player[i].hitbox_h;
-			break;
-		
-			//Right side of the hitbox:
-			case C_RIGHT:
-				left = 0;
-				top = -player[i].hitbox_h;
-				right = player[i].wall_w + 1;
-				bottom = player[i].hitbox_h;
-			break;
-		}
-
-		//player[i] events:
-		with(player[i])
-		{
-			//Check for player[i]'s collision with the object:
-			if(collision_rectangle(floor(x) + left - hitbox_left_offset, floor(y) + top - hitbox_top_offset, floor(x) + right + hitbox_right_offset, floor(y) + bottom + hitbox_bottom_offset, other, true, true)) 
-			{
-				if(hitbox_allow)
-				{
-					return id;
-				}
-			}
-		}
+		//Right side of the hitbox:
+		case C_RIGHT:
+		pBox.left = 0;
+		break;
 	}
+	
+	var col = instance_collide(p, pBox, id, this_hitbox);
+	
+	if(p.hitbox_allow)
+		return col;
+	
 }
