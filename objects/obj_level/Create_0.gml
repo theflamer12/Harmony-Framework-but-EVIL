@@ -2,7 +2,6 @@
 
 	disable_timer = false;
 	badnik_chain = 0;
-	scattered_emerald_shards = false;
 	emerald_array = [];
 	
 	//====================================================//

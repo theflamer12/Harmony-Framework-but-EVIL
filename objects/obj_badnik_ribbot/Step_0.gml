@@ -1,5 +1,5 @@
 	// Inherit the parent event's code for the badnik
-	event_inherited();
+	instance_act_badnik();
 
 	// Change some values
 	y_speed += 0.18; // Gravity

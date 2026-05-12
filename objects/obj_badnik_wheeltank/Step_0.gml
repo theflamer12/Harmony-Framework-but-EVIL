@@ -1,5 +1,5 @@
 	// Inherit the parent event's code for the badnik
-	event_inherited();
+	instance_act_badnik()
 
 	// Move the badnik when the wait timer is at 0
 	if (waittimer == 0)

@@ -1,5 +1,5 @@
 	// Inherit the parent event's code for the badnik
-	event_inherited();
+	instance_act_badnik();
 	animator_update(animator);
 	if (on_screen()) 
 	{

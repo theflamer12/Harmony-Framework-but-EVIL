@@ -91,38 +91,6 @@
 		}
 	}
 	
-	if instance_exists(obj_emerald_shard) {
-		var ico_sx = global.window_width / 2
-		var ico_sy = global.window_height - 24
-		//awesome code i stole from gamemaker forms kinda, for monitor icond display
-		var ico_size = 16; // size of the sprite
-		var ico_padding = 2; // size of the space between each sprite
-
-		var ico_max_width = (ico_size+ico_padding) * 1; // calculates the biggest the width can be (as flyingsaucerinvasion suggested)
-		var ico_my_width = (ico_size+ico_padding) *instance_number(obj_emerald_shard); // calculates the width of just this row
-		var ico_offset = (ico_max_width - ico_my_width) / 2;
-		
-		
-		for(var j=0; j<instance_number(obj_emerald_shard); j++) {
-			 var obj = instance_find(obj_emerald_shard,j);
-		 
-		     var dx = ico_sx + j * (ico_size+ico_padding) + ico_offset;
-			 var ico_posy = ico_sy
-			 
-			 draw_sprite_ext(spr_emerald_radar, obj.distance_stages, dx + obj.hud_x, ico_posy - offset[3],
-				obj.scale, obj.scale, 0, c_white, obj.distance_stages == 0 ? 0.75: 1)
-		}	
-	}
-	
-	if (obj_level.is_emerald_hunt) {
-		for(var j=0; j<array_length(obj_level.emerald_array); j++) {
-			if (obj_level.emerald_array[j] mod 18 < 8) {
-				draw_sprite(spr_hud_shard_icon,0,global.window_width - 8 - (27 * j) - offset[0] + max(((obj_level.emerald_array[j]* 4) - 352), 0)  , 8);
-			}
-		}
-	}
-	
-	
 	surface_reset_target();
 	
 	draw_surface(surf, cx, cy);
