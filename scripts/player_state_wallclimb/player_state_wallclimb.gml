@@ -35,6 +35,25 @@ function player_state_wallclimb(){
 		x -= facing;
 	}
 	
+		
+	//Has reached the ground
+	if(ground)
+	{
+		player_angle_detection();
+		if(ground_angle > 45 && ground_angle < 315)
+		{
+			animation_play(animator, ANIM.ROLL);
+			play_sound(sfx_roll);
+			control_lock = 4;
+			ground_speed = -2.5 * dsin(ground_angle);
+			state = player_state_roll;
+			exit;
+		}
+		
+		state = player_state_normal;
+		exit;
+	}
+	
 	//When there's no more wall
 	if(!point_check((wall_w + 1) * facing, wall_h, false))
 	{
@@ -70,16 +89,6 @@ function player_state_wallclimb(){
 		state = player_state_jump;
 		animation_play(animator, ANIM.ROLL);
 		play_sound(sfx_jump);
-		exit;
-	}
-	
-	//Has reached the ground
-	if(ground)
-	{
-		control_lock = 4;
-		player_angle_detection()
-		ground_speed = -2.5 * dsin(ground_angle)
-		state = player_state_normal;
 		exit;
 	}
 }
