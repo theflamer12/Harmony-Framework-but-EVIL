@@ -48,6 +48,7 @@
     {"name":"par_gumball_solid","order":6,"path":"objects/par_gumball_solid/par_gumball_solid.yy",},
     {"name":"rm_bonus","order":1,"path":"rooms/rm_bonus/rm_bonus.yy",},
     {"name":"background_visibility","order":1,"path":"scripts/background_visibility/background_visibility.yy",},
+    {"name":"file_bin_util","order":2,"path":"scripts/file_bin_util/file_bin_util.yy",},
     {"name":"has_all_emeralds","order":1,"path":"scripts/has_all_emeralds/has_all_emeralds.yy",},
     {"name":"instance_util","order":1,"path":"scripts/instance_util/instance_util.yy",},
     {"name":"player_state_transform","order":1,"path":"scripts/player_state_transform/player_state_transform.yy",},
