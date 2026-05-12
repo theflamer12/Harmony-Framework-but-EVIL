@@ -82,7 +82,7 @@ function animator_update(animator)
 	if(animator.animator_reset_flag)
 	{
 		//If animation doesn't exist just don't update anything
-		if(animator.animation_to_set <= array_length(list_animation_sprite)-1)
+		if(animator.animation_to_set >= 0 && animator.animation_to_set <= array_length(list_animation_sprite) - 1)
 		{
 			//Update the current animation
 			animator.animation_current = animator.animation_to_set;
@@ -119,6 +119,42 @@ function animation_add(animation_id, animation_sprite, animation_speed, animatio
 	list_animation_duration_flag[animation_id] = use_duration;
 	list_animation_speed[animation_id] = animation_speed;	
 	list_animation_duration[animation_id] = animation_speed;
+}
+
+function animation_play_no_list(animator, sprite, spd, loop = true, loop_frame = 0, use_duration = false, dont_reset_frame = false)
+{
+	if(!global.process_objects)
+	{
+		exit
+	}
+	
+	// Mark as listless
+	animator.animation_to_set = -1;
+
+	//Update the current animation
+	animator.animation_current = -1;
+		
+	//Reset animation's properties
+	if (!dont_reset_frame) 
+	{
+		animator.animation_frame = 0;
+	}
+	animator.animation_finished = false;
+	animator.animator_reset_flag = false;
+	
+	//Update information from the list
+	animator.animation_sprite = sprite;
+	animator.animation_speed = spd;
+	animator.animation_loop_frame = loop_frame;
+	animator.animation_loop = loop;
+	animator.animation_use_duration = use_duration;
+	animator.animation_duration = spd;
+	
+	if (!dont_reset_frame) 
+	{
+		animator.animation_sub_image = 0;
+	}
+	
 }
 
 function animation_play(animator, animation_id, dont_reset_frame = false)

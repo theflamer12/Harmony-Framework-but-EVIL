@@ -24,7 +24,7 @@
 			}
 			else
 			{
-				if(player.attacking && player_collide_object(C_TOP_EXT))
+				if(player.attacking && player_collide_object(C_TOP))
 				{
 					collision_flag = false;
 				}

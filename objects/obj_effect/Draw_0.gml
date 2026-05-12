@@ -1,10 +1,8 @@
 	/// @description Draw the effect
-	if palette 
-	{
-		palette_swap(palette_texture, palette_index)	
-	}
-
+	if(!animator.animation_sprite)
+		exit;
+	
 	gpu_set_blendmode(blend);
-	draw_self_floor();
+	draw_animator(animator ,,,,,, image_blend, image_alpha);
 	gpu_set_blendmode(bm_normal)
 	shader_reset()

@@ -5,8 +5,6 @@ function player_collide_object(this_hitbox = -1, side = C_MAIN, player_id = 0){
 	#macro C_TOP 2
 	#macro C_LEFT 3
 	#macro C_RIGHT 4
-	#macro C_BOTTOM_EXT 5
-	#macro C_TOP_EXT 6
 	
 	//Get nearest player object:
 	var p = player_find(player_id);
