@@ -1,6 +1,6 @@
 /// @description Resize the window
 	//Fullscreen
-	window_set_fullscreen((global.window_size >= global.window_size_limit));
+	window_set_fullscreen(global.window_size >= global.window_size_limit);
 	
 	//Screen resizing
 	camera_set_view_size(view_camera[view_current], global.window_width, global.window_height);

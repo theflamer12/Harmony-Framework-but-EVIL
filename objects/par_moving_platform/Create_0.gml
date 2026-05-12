@@ -1,6 +1,6 @@
 /// @description Values
 	sink_offset = 0;
-	move_object = [obj_ring, obj_spring_vertical, obj_monitor, par_moving_platform, par_badnik];
+	move_object = [obj_ring, obj_spring_vertical, obj_monitor, par_moving_platform];
 	origin_x = xstart
 	origin_y = ystart
 	fall_timer = 60
