@@ -28,13 +28,13 @@
 		}
 	
 	
-		scale_y = 2 * easeInOutCubic(ease_timer[0]);
+		scale_y = 2 * ease_in_out_cubic(ease_timer[0]);
 		scale_y += 1;
 	
-		range_x = 64 * easeInOutCubic(ease_timer[0]);
-		range_y = 32 * easeInOutCubic(ease_timer[1]);
+		range_x = 64 * ease_in_out_cubic(ease_timer[0]);
+		range_y = 32 * ease_in_out_cubic(ease_timer[1]);
 		
-		bar_pos = 80 * easeOutElastic(ease_timer[3]);
+		bar_pos = 80 * ease_out_elastic(ease_timer[3]);
 		bar_pos += 108;
 	
 		if (Input.StartPress || Input.ActionPress) && !skipped {
@@ -49,8 +49,8 @@
 		
 		ease_timer[2] = approach(ease_timer[2], 1, 0.008);
 		
-		scale_x = 6 * easeInQuad(ease_timer[2]);
-		scale_y = 6 * easeInQuad(ease_timer[2]);
+		scale_x = 6 * ease_in_quad(ease_timer[2]);
+		scale_y = 6 * ease_in_quad(ease_timer[2]);
 		
 		scale_x += 1;	
 		scale_y += 1;
