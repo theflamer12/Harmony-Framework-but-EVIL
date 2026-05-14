@@ -64,18 +64,16 @@ function play_music(music_id, channel = 0){
 		//Restore jingle channel value
 		playing[Jingle] = noone;
 		
-		//show_debug_message( global.music_map[? music_id][0])
-		//show_debug_message( global.music_map[? music_id][1])
-		//show_debug_message( global.music_map[? music_id][2])
-		//show_debug_message( global.music_map[? music_id][3])
-		
 		//Set the loop points
 		loop_start[channel] = global.music_map[? music_id][1];
 		loop_end[channel] = global.music_map[? music_id][2];
 		
+		// Channel volume
+		var vol = global.bgm_volume * fade_multiplier[channel] * general_fade_multiplier;
+		
 		//Play the sound
 		play_data[channel] = audio_get_name(global.music_map[? music_id][0]);
-		playing[channel] = audio_play_sound(global.music_map[? music_id][0], 0, global.music_map[? music_id][3]);
+		playing[channel] = audio_play_sound(global.music_map[? music_id][0], 0, global.music_map[? music_id][3], vol);
 	}
 }
 

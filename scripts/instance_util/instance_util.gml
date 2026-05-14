@@ -193,7 +193,7 @@ function instance_collide(o, hitbox_other = noone, this = id, this_hitbox = noon
 				colX = this.x + (thisHitbox.left - otherHitbox.right) - 1;
 			}
 		} 
-		else if(o.x + otherHitbox.left <= this.x + thisHitbox.right)
+		else if(o.x + otherHitbox.left < this.x + thisHitbox.right)
 		{
 			sideH = C_RIGHT;
 			colX = this.x + (thisHitbox.right - otherHitbox.left);
@@ -212,7 +212,7 @@ function instance_collide(o, hitbox_other = noone, this = id, this_hitbox = noon
 				colY = this.y + (thisHitbox.top - otherHitbox.bottom) - 1;
 			}
 		} 
-		else if(o.y + otherHitbox.top <= this.y + thisHitbox.bottom)
+		else if(o.y + otherHitbox.top < this.y + thisHitbox.bottom)
 		{
 			sideV = C_BOTTOM;	
 			colY = this.y + (thisHitbox.bottom - otherHitbox.top);
