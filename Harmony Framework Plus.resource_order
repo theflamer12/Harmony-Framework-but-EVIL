@@ -46,6 +46,7 @@
     {"name":"par_gumball_solid","order":6,"path":"objects/par_gumball_solid/par_gumball_solid.yy",},
     {"name":"background_visibility","order":1,"path":"scripts/background_visibility/background_visibility.yy",},
     {"name":"has_all_emeralds","order":1,"path":"scripts/has_all_emeralds/has_all_emeralds.yy",},
+    {"name":"player_handle_demo","order":2,"path":"scripts/player_handle_demo/player_handle_demo.yy",},
     {"name":"player_state_transform","order":1,"path":"scripts/player_state_transform/player_state_transform.yy",},
     {"name":"bgm_bonus","order":1,"path":"sounds/bgm_bonus/bgm_bonus.yy",},
     {"name":"j_super","order":1,"path":"sounds/j_super/j_super.yy",},

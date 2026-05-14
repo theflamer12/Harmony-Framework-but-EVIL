@@ -28,6 +28,10 @@
 	//Character globals
 	global.character = CHAR_SONIC;			//Global value for the character
 	
+    //Demo variables
+    global.demo_level_index = 0;
+    global.demo_play = DEMO_NULL;
+	
 	//Screen values
 	global.window_width  = 426;				//Window's horizontal size
 	global.window_height = 240;				//Window's vertical size
