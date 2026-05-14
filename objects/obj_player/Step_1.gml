@@ -23,6 +23,9 @@
 	//Player input scripts
 	player_get_input();
 	
+	//Handler for the demo state machine
+	player_handle_demo();
+	
 	//Hande player physics values
 	player_handle_physics();
 	

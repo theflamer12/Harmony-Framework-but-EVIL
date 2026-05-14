@@ -20,18 +20,10 @@
 	//Game variables
 	global.process_objects = true;			//Flag that allows step event of every object to be processed
 	global.dev_mode = DEVMODE;					//Flag for developer mode, which allows you to use dev commands, don't forget to turn this off when releasing the game
-	
-	//Stages arrays
-	global.zone_list = 
-	[
-		
-	];
-	
-	global.bonus_list = 
-	[
-		rm_gumball_bonus,
-		rm_slot_machine_bonus
-	];
+
+    //Demo variables
+    global.demo_level_index = 0;
+    global.demo_play = DEMO_NULL;
 	
 	//Character globals
 	global.character = CHAR_SONIC;			//Global value for the character
@@ -145,6 +137,10 @@
 	#macro WINDOW_WIDTH global.window_width
 	#macro WINDOW_HEIGHT global.window_height
 	#macro FRAME_TIMER global.object_timer
+	#macro DEMO_NULL -1
+	#macro DEMO_RECORD 0
+	#macro DEMO_PLAY 1
+	#macro DEMO_END 2
 	
 	global.red_ring_map = ds_map_create();
 	

@@ -49,6 +49,14 @@
 			}
 		}
 		
+		if(keyboard_check_pressed(ord("E")))//"D")))
+		{
+			global.demo_play = wrap(global.demo_play + 1, DEMO_NULL, DEMO_PLAY);
+			
+			reset_stage_data();
+			room_restart();
+		}
+		
 		if(keyboard_check(vk_f6)) room_speed = 5;
 		if(keyboard_check(vk_backspace)) room_speed = 240;
 	
