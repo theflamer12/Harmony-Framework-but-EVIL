@@ -54,6 +54,14 @@
 	
 		//Stop if player doesn't exist
 		if(!instance_exists(obj_player)) exit;
+		
+		if(keyboard_check_pressed(ord("D")))
+		{
+			global.demo_play = wrap(global.demo_play + 1, DEMO_NULL, DEMO_PLAY);
+			
+			reset_stage_data();
+			room_restart();
+		}
 	
 		if(keyboard_check_pressed(ord("V")) && !instance_exists(obj_act_clear)){
 			instance_create_layer(0, 0, "Utilities", obj_act_clear)

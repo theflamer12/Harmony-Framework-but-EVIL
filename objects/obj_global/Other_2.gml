@@ -24,6 +24,10 @@
 	//Character globals
 	global.character = CHAR_SONIC;			//Global value for the character
 	
+    //Demo variables
+    global.demo_level_index = 0;
+    global.demo_play = DEMO_NULL;
+	
 	//Screen values
 	global.window_width  = 426;				//Window's horizontal size
 	global.window_height = 240;				//Window's vertical size
@@ -124,6 +128,10 @@
 	#macro WINDOW_WIDTH global.window_width
 	#macro WINDOW_HEIGHT global.window_height
 	#macro FRAME_TIMER global.object_timer
+	#macro DEMO_NULL -1
+	#macro DEMO_RECORD 0
+	#macro DEMO_PLAY 1
+	#macro DEMO_END 2
 	
 	global.red_ring_map = ds_map_create();
 	

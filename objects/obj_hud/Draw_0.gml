@@ -1,7 +1,7 @@
 /// @description Draw the HUD
 
 	//Don't render the hud
-	if(!render)
+	if(!render || global.demo_play == DEMO_PLAY)
 	{
 		exit;	
 	}
