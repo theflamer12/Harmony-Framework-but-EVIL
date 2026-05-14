@@ -49,7 +49,7 @@
 			}
 		}
 		
-		if(keyboard_check_pressed(ord("D")))
+		if(keyboard_check_pressed(ord("E")))
 		{
 			global.demo_play = wrap(global.demo_play + 1, DEMO_NULL, DEMO_PLAY);
 			

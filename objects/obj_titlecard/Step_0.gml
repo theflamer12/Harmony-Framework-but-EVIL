@@ -1,6 +1,6 @@
 /// @description Card events
 	//Remove the title card with debug
-	if(!global.title_card)
+	if(!global.title_card || global.demo_play != DEMO_NULL)
 	{
 		instance_destroy();	
 		if(!act_card)
