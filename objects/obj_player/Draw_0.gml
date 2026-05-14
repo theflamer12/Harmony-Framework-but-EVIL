@@ -43,8 +43,16 @@
 		draw_animator(animator, floor(x), floor(y), image_xscale, 1, image_angle, c_white, 1);
 	}
 	shader_reset()
+	
 	//Draw spindash dust effect
 	if(!global.chaotix_dust_effect && state = player_state_spindash && ground)
 	{
 		draw_sprite_ext(spr_effect_spindash, spindash_dust_frames, floor(x) - 2 * facing, floor(y) + hitbox_h + 1, facing, 1, 0, c_white, 1);	
+	}
+	
+	// Draw water run effect
+	if(water_run && !on_terrain && global.water_running_effect == 0)
+	{
+		var spdMulti = 0.4;
+		draw_sprite_ext(spr_effect_water_run, FRAME_TIMER * spdMulti, floor(x - 19 * sign(x_speed)), floor(y + hitbox_h + 1), sign(x_speed), 1, 0, c_white, 1.0);	
 	}

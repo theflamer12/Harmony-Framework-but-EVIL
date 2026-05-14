@@ -6,7 +6,6 @@
 		exit;	
 	}
 	
-	
 	//Include step movement
 	repeat(steps)
 	{

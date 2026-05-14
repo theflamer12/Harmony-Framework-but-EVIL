@@ -8,7 +8,8 @@
 	show_debug_message(sound_arr[0])
 	
 	//The lists
-	zone_list = [["ARBOREAL AGATE", rm_arboreal_agate1, rm_arboreal_agate2]];
+	zone_list = [["ARBOREAL AGATE", rm_arboreal_agate1, rm_arboreal_agate2],
+	["TEST STAGE", rm_your_zone]];
 	
 	reset_stage_data();
 	reset_background_visibility();

@@ -77,7 +77,8 @@
 	hitbox_allow = true;				// Flag used for allowing hitbox collision between player and other objects
 	flag_override = true;				// This is used to prevent flags from being override in player state list script when false
 	disable_death = false;				// If true, disables the ability to die via pits or other means 
-										   
+	water_run = false;					// Flag used of player is water running
+	
 	//Hitbox values:					   
 	hitbox_w = 9;						// Hitbox width variable
 	hitbox_h = 19;						// Hitbox height variable

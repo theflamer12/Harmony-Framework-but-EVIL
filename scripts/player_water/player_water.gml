@@ -1,6 +1,47 @@
-function player_water(){
+function player_water()
+{
+	// Reset the water run flag
+	water_run = false;
+	
 	//Stop executing if theres no water
 	if(!instance_exists(obj_water) || !collision_allow) exit;
+	
+	// Constants 
+	var waterY = obj_water.y;
+	var waterRange = 8;
+	var waterSpd = 4;
+	
+	// Is player's bottom side in the water's range?
+	if(y + hitbox_h > waterY - waterRange && y + hitbox_h < waterY + waterRange && ground
+	&& abs(ground_speed) > waterSpd && y_speed >= -0.1)
+	{
+		// Attach player to the water horizon
+		if(!on_terrain)
+		{
+			y = waterY - hitbox_h - 1;	
+			ground_angle = 0;
+			
+			//Player effect
+			if(FRAME_TIMER mod 4 == 0 && global.water_running_effect == 1)
+			{
+				//Create effects
+				create_effect(obj_player.x, obj_water.y, spr_water_splash, 0.35, obj_player.depth - 1);
+				play_sound(sfx_water_splash);	
+			}
+		}
+		
+		// Flag player to be on water
+		water_run = true;
+		
+		// Play the water run sound
+		if(global.water_running_effect == 0 && !audio_is_playing(sfx_water_run))
+			play_sound(sfx_water_run, true);
+	}
+	
+	// Stop the water run sound
+	if(!water_run || on_terrain)
+		audio_stop_sound(sfx_water_run);
+	
 	
 	//Entering water
 	if(y >= obj_water.y)

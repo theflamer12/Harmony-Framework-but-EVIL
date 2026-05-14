@@ -1,6 +1,6 @@
 {
   "$GMSound":"v2",
-  "%Name":"sfx_hydroplaning",
+  "%Name":"sfx_water_run",
   "audioGroupId":{
     "name":"audiogroup_default",
     "path":"audiogroups/audiogroup_default",
@@ -12,7 +12,7 @@
   "conversionMode":0,
   "duration":8.516327,
   "exportDir":"",
-  "name":"sfx_hydroplaning",
+  "name":"sfx_water_run",
   "parent":{
     "name":"Player",
     "path":"folders/Sounds/Sound Effects/Player.yy",
@@ -21,6 +21,6 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"sfx_hydroplaning.wav",
+  "soundFile":"sfx_water_run.wav",
   "volume":1.0,
 }

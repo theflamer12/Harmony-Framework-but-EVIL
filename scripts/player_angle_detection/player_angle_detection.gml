@@ -9,7 +9,7 @@ function player_angle_detection(){
 	on_edge = false;
 	ground_push_flag = true;
 	
-	if(on_object)
+	if(on_object || water_run && !on_terrain)
 	{
 		ground_angle = 0;
 		exit;	
