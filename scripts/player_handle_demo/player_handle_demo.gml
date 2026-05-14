@@ -9,7 +9,7 @@ function player_handle_demo()
 	if(!variable_instance_exists(obj_level, "stage_name") || global.demo_play == DEMO_NULL) exit;
 	
 	//Filename
-	name = string_replace_all(string_upper(obj_level.stage_name + " " + obj_level.act), " ", "_");
+	name = string_replace_all(string_upper(obj_level.stage_name + "_" + string(obj_level.act)), " ", "_");
     
     //This is where demo shit is controlled
     if(global.demo_play == DEMO_PLAY)

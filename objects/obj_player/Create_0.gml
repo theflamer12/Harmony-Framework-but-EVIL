@@ -1,6 +1,9 @@
 /// @description Values
 	character = global.character;		//Character variable
 	
+	//Demo values:
+	demo_timer = 0;
+	
 	//Movement values:
 	x_speed = 0;						//Horizontal speed movement
 	y_speed = 0;						//Vertical speed movement
