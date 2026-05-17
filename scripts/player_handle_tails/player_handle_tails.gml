@@ -61,7 +61,7 @@ function player_handle_tails(){
 					}
 				
 					//Ground angle
-					if(state = player_state_roll && ground)
+					if(state == player_state_roll && ground)
 					{
 						if(sign(ground_speed) != 0)other.facing = sign(ground_speed);
 						other.visual_angle = ground_angle;		
@@ -87,7 +87,7 @@ function player_handle_tails(){
 			image_angle = floor(visual_angle/45)*45;
 			
 			//Limit rotation
-			if(other.state = player_state_roll && other.ground && other.ground_angle < 45 || other.state = player_state_roll && other.ground && other.ground_angle > 360-45)  image_angle = 0;
+			if(other.state == player_state_roll && other.ground && other.ground_angle < 45 || other.state == player_state_roll && other.ground && other.ground_angle > 360-45)  image_angle = 0;
 		}
 	}
 }

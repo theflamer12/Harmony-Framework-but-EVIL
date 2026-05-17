@@ -30,34 +30,8 @@ function player_state_roll(){
 	ground_speed = approach(ground_speed, 0, roll_friction);
 	
 	//Trigger jump
-	if(press_action && ground && !touching_ceiling && !force_roll)
-	{
-		//Change animation
-		animation_play(animator, ANIM.ROLL);
-		
-		//Jump off the terrain
-		y_speed -= jump_strength * dcos(ground_angle);	
-		x_speed -= jump_strength * dsin(ground_angle);
-			
-		//Trigger the jump flag
-		jump_flag = true;
-			
-		//Detach player off the ground and change state
-		ground = false;
-		state = player_state_jump
-		dropdash_timer = 0;
-		idle_timer = 0;
-		//Change jump animation duration
-		jump_anim_speed = floor(max(0, 4-abs(ground_speed)));
-			
-		//Reset angle and floor mode
-		ground_angle = 0;
-		player_reposition_mode(CMODE_FLOOR);
-			
-		//Play the sound
-		play_sound(sfx_jump);
+	if(player_check_jump())
 		exit;
-	}
 	
 	//Stop rolling
 	if(ground_angle < 40 || ground_angle > 320)
@@ -89,4 +63,22 @@ function player_state_roll(){
 	
 	//Rolling speed cap
 	ground_speed = clamp(ground_speed, -roll_speed_cap, roll_speed_cap);
+}
+
+function player_check_roll()
+{
+	//Trigger rolling
+	if(hold_down && abs(ground_speed) > 1 && ground)
+	{
+		//Play the rolling animation
+		animation_play(animator, ANIM.ROLL);
+		
+		//Update the state
+		state = player_state_roll;
+		idle_timer = 0;
+			
+		//Play the sound
+		play_sound(sfx_roll);
+		return true;				// Needed for exit
+	}
 }
