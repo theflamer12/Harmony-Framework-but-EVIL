@@ -1,4 +1,6 @@
 function add_background(sprite, frame, scroll_x, scroll_y, spd_x=0, spd_y=0, off_x=0, off_y=0, vertical_loop = false){
+	var oldId = bg_id;
+	
 	background_sprite[bg_id] = sprite;
 	background_frame[bg_id] = frame;
 	factor_x[bg_id] = scroll_x;
@@ -12,9 +14,13 @@ function add_background(sprite, frame, scroll_x, scroll_y, spd_x=0, spd_y=0, off
 	trigger[bg_id] = false;
 	visibility[bg_id] = true;
 	bg_id++;
+	
+	return oldId;
 }
 
 function add_background_line(sprite, frame, scroll_x, scroll_y, spd_x, spd_y, off_x, off_y, gaps, steps, y_scale = 1){
+	var oldId = bg_id;
+	
 	background_sprite[bg_id] = sprite;
 	background_frame[bg_id] = frame;
 	factor_x[bg_id] = scroll_x;
@@ -31,4 +37,6 @@ function add_background_line(sprite, frame, scroll_x, scroll_y, spd_x, spd_y, of
 	trigger[bg_id] = false;
 	visibility[bg_id] = true;
 	bg_id++;
+	
+	return oldId;
 }
