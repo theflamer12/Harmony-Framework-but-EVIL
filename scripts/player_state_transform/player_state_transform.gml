@@ -16,7 +16,6 @@ function player_state_transform(){
 		hitbox_allow = false;
         x_speed = 0;
         y_speed = 0;
-		landed = false;
 		ground = false;
     }
     else {

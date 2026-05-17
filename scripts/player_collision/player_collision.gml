@@ -40,7 +40,7 @@ function player_collision(){
 		{
 			//Ground the player and convert x speed to ground speed
 			ground = true;
-			landed = true;
+			player_land_callback();
 			ground_speed = x_speed;
 			reach_range = 48;
 			

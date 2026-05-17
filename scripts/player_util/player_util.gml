@@ -107,7 +107,8 @@ function player_react_solid(result)
 					o.ground_speed = o.x_speed;
 				
 				o.ground = true;	
-				o.landed = true;
+				with(o)	
+					player_land_callback();
 			}
 		}
 

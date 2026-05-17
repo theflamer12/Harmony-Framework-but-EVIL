@@ -13,9 +13,6 @@
 	layer_set_visible(global.col_tile[2], false);
 	layer_set_visible(global.col_tile[3], false);
 	
-	//Reset score combo when player lands
-	if(obj_player.landed) badnik_chain = 0;
-	
 	//Reset act transition flag
 	global.act_transition = false;
 	

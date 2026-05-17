@@ -14,7 +14,7 @@ function player_state_dropdash(){
 	}
 	
 	//Land the dropdash
-	if(!landed && ground)
+	if(ground)
 	{
 		//Dropdash speeds
 		var dashspeed = 8.0;

@@ -69,13 +69,6 @@ function player_state_roll(){
 		}
 	}
 	
-	//Reset state back to normal when landing
-	if(landed && !force_roll) 
-	{
-		state = player_state_normal;
-		exit;
-	}
-	
 	//Get input
 	var mov = hold_right - hold_left;
 	

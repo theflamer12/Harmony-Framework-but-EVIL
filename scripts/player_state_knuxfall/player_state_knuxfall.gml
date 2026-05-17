@@ -20,7 +20,7 @@ function player_state_knuxfall(){
 	}
 	
 	//The end of animation
-	if(animation_is_playing(animator, ANIM.KNUXLAND) && animation_has_finished(animator) && !landed) 
+	if(animation_is_playing(animator, ANIM.KNUXLAND) && animation_has_finished(animator)) 
 	{
 		state = player_state_normal;
 	}

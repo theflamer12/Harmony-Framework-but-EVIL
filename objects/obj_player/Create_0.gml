@@ -54,7 +54,6 @@
 	
 	//Check variables:
 	ground = true;						// Check used to check if player is on ground or not
-	landed = false;						// Check if player has landed
 	debug = false;						// Check if player is in debug mode or not
 	on_edge = false;					// Check used when angle is out of tolerance range on the ledges
 	on_object = false;					// Check for if player is on object

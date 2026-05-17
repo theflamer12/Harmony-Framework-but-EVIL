@@ -15,78 +15,11 @@ function player_angle_detection(){
 		exit;	
 	}
 	
-	//Ground angle detection
-	if(mode == 0 && !landed && ground)
-	{
-		if(point_check(-wall_w-8, wall_h, false) && ground_angle == 0)
-		{
-			var temp_ang = get_angle(x - wall_w-8, y + wall_h, 3);
-					
-			//Calculate difference between current ground angle and temp angle
-			var ang_diff = abs(ground_angle-temp_ang);
-					
-			//show_debug_message(ang_diff)
-			if(ang_diff < 300 && ang_diff > 270)
-			{
-				//new_angle = 0;
-				//on_edge = true;
-				ground_push_flag = false;
-			}
-		}
-					
-		if(point_check(wall_w+8, wall_h, false) && ground_angle == 0)
-		{
-			var temp_ang = get_angle(x + wall_w+8, y + wall_h, 1);
-					
-			//Calculate difference between current ground angle and temp angle
-			var ang_diff = abs(ground_angle-temp_ang);
-
-			if(ang_diff > 60 && ang_diff < 90)
-			{
-				//new_angle = 0;
-				//on_edge = true;
-				ground_push_flag = false;
-			}
-		}
-					
-		//Left ramp edge
-		if(!line_check(-wall_w, hitbox_h+16, true) && line_check(hitbox_w, hitbox_h+16, true))
-		{
-			//Get temporary ground angle
-			var temp_ang = get_angle(x-hitbox_w, y+hitbox_h+1, 1, 32);
-
-			//Calculate difference between current ground angle and temp angle
-			var ang_diff = abs(ground_angle-temp_ang);
-				
-			//If difference is too steep disable force angle detection to 0 and disable slope push down
-			if(ang_diff > 45 && ang_diff < 90)
-			{
-				on_edge = true;
-			}
-		}
-			
-		//Right ramp edge
-		if(line_check(-hitbox_w, hitbox_h+16, true) && !line_check(wall_w, hitbox_h+16, true))
-		{
-			//Get temporary ground angle
-			var temp_ang = get_angle(x+hitbox_w, y+hitbox_h+1, 3, 32);
-						
-			//Calculate difference between current ground angle and temp angle
-			var ang_diff = abs(ground_angle-temp_ang);
-			
-			//If difference is too steep disable force angle detection to 0 and disable slope push down
-			if(ang_diff > 270 && ang_diff < 315)
-			{
-				on_edge = true;
-			}
-		}
-	}
-		
 	//Get ground angle
 	if(ground)
 	{
 		//Get new ground angle
-		if(!on_object && !on_edge)
+		if(!on_object)
 		{
 			//Get new angle from left ground sensor
 			if(line_check(-hitbox_w, hitbox_h+1, true) && !line_check(hitbox_w, hitbox_h, true))

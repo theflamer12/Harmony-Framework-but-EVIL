@@ -16,7 +16,7 @@ function player_hitbox(){
 	if(animation_is_playing(animator, ANIM.ROLL) || animation_is_playing(animator, ANIM.DROPDASH) || state == player_state_jump)
 	{
 		//Change the camera offset for rolling
-		if(ground || landed)
+		if(ground)
 		{
 			obj_camera.roll_offset = camera_rolling_offset[global.character];
 		}

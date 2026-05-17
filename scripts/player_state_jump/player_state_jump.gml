@@ -95,14 +95,11 @@ function player_state_jump(){
 		animation_play(animator, ANIM.ROLL);
 		
 		//Update the state
-		if(!landed)
-		{
-			state = player_state_roll;
-			idle_timer = 0;
+		state = player_state_roll;
+		idle_timer = 0;
 			
-			//Play the sound
-			play_sound(sfx_roll);
-		}
+		//Play the sound
+		play_sound(sfx_roll);
 		exit;
 	}
 }

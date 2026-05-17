@@ -155,7 +155,8 @@ function instance_act_semi_solid(o, hitbox_other = noone, this = id, this_hitbox
 						o.ground_speed = o.x_speed;
 				
 					o.ground = true;	
-					o.landed = true;
+					with(o)
+						player_land_callback();
 				}
 			}
 		}

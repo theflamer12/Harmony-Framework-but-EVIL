@@ -327,6 +327,7 @@
     {"id":{"name":"player_handle_tails","path":"scripts/player_handle_tails/player_handle_tails.yy",},},
     {"id":{"name":"player_hitbox","path":"scripts/player_hitbox/player_hitbox.yy",},},
     {"id":{"name":"player_inv_speed","path":"scripts/player_inv_speed/player_inv_speed.yy",},},
+    {"id":{"name":"player_land_callback","path":"scripts/player_land_callback/player_land_callback.yy",},},
     {"id":{"name":"player_macros","path":"scripts/player_macros/player_macros.yy",},},
     {"id":{"name":"player_misc","path":"scripts/player_misc/player_misc.yy",},},
     {"id":{"name":"player_mode","path":"scripts/player_mode/player_mode.yy",},},
