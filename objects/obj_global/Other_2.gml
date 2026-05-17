@@ -29,6 +29,7 @@
 	global.window_height = 240;				//Window's vertical size
 	global.window_size_limit = 4;			//Window size limiter
 	global.window_size = 2;					//Window size multiplier
+	global.draw_state = undefined;
 	
 	//keyboard inputs
 	global.up = vk_up;						

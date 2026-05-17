@@ -1,3 +1,51 @@
+function draw_sprite_tiled_horizontal(sprite, subimg, pos_x, pos_y, vertical = false){
+	var Width, Height, Left, Right, Bottom;
+ 
+	Width = sprite_get_width(sprite);
+	Height = sprite_get_height(sprite);
+	Left  = -1;
+	Right = camera_get_view_x(view_camera[view_current])/Width+global.window_width/Width+2;
+	Bottom = camera_get_view_y(view_camera[view_current])/Height+global.window_height/Height+2;
+	
+	if(!vertical)
+	{
+		for(var i = Left; i <= Right; i++)
+		{
+			draw_sprite(sprite, subimg, pos_x mod Width+Width*i, pos_y);
+		}
+	}
+	else
+	{
+		for(var i = Left; i <= Right; i++)
+		{
+			for(var j = -1; j <= Bottom; j++)
+			{
+				draw_sprite(sprite, subimg, pos_x mod Width+Width*i, pos_y mod Height+Height*j);
+			}
+		}		
+	}
+}
+
+function draw_sprite_tiled_horizontal_part(sprite, subimg, left, top, width, height, pos_x, pos_y)
+{
+	var Width, Height, Left, Right, Bottom;
+ 
+	Width = sprite_get_width(sprite);
+	Height = sprite_get_height(sprite);
+	Left  = -1;
+	Right = camera_get_view_x(view_camera[view_current])/Width+global.window_width/Width+2;
+	Bottom = camera_get_view_y(view_camera[view_current])/Height+global.window_height/Height+2;
+	
+
+
+		for(var i = -1; i <= Bottom; i++)
+		{
+			draw_sprite_part(sprite, subimg, left, top, width, height, pos_x mod Width+Width*i, pos_y);
+		}
+			
+	
+}
+
 function draw_background_layer(background_layer)
 {
 	//Draw the background
@@ -100,4 +148,67 @@ function draw_background_layer(background_layer)
 	
 	//Reset the shader
 	shader_reset();
+}
+
+function draw_self_floor()
+{
+	//Only purpose of this is because of GameMaker's horrible sub - pixeling
+	draw_sprite_ext(sprite_index, image_index, floor(x) , floor(y), image_xscale, image_yscale, image_angle, draw_get_color(), draw_get_alpha());
+}
+
+function draw_state_save()
+{
+    global.draw_state = {
+        blendmode : gpu_get_blendmode(),
+        blendmode_ext : gpu_get_blendmode_ext(),
+        colourwriteenable : gpu_get_colourwriteenable(),
+        cullmode : gpu_get_cullmode(),
+        fog : gpu_get_fog(),
+        ztestenable : gpu_get_ztestenable(),
+        zfunc : gpu_get_zfunc(),
+        zwriteenable : gpu_get_zwriteenable(),
+        alphatestenable : gpu_get_alphatestenable(),
+        alphatestref : gpu_get_alphatestref(),
+        filter : gpu_get_texfilter(),
+        wrap : gpu_get_texrepeat(),
+        shader : shader_current(),
+        matrix_world : matrix_get(matrix_world),
+        matrix_view : matrix_get(matrix_view),
+        matrix_projection : matrix_get(matrix_projection)
+    };
+}
+
+function draw_state_restore()
+{
+    var _state = global.draw_state;
+    
+    gpu_set_blendmode(_state.blendmode);
+    
+    var blend_src = _state.blendmode_ext[0];
+    var blend_dest = _state.blendmode_ext[1];
+    gpu_set_blendmode_ext(blend_src, blend_dest);
+    
+    var colour_write = _state.colourwriteenable;
+    gpu_set_colourwriteenable(colour_write[0], colour_write[1], colour_write[2], colour_write[3]);
+    
+    gpu_set_cullmode(_state.cullmode);
+    
+    var fog_data = _state.fog;
+    gpu_set_fog(fog_data[0], fog_data[1], fog_data[2], fog_data[3]);
+    
+    gpu_set_ztestenable(_state.ztestenable);
+    gpu_set_zfunc(_state.zfunc);
+    gpu_set_zwriteenable(_state.zwriteenable);
+    
+    gpu_set_alphatestenable(_state.alphatestenable);
+    gpu_set_alphatestref(_state.alphatestref);
+    
+    gpu_set_texfilter(_state.filter);
+    gpu_set_texrepeat(_state.wrap);
+    
+    shader_set(_state.shader);
+    
+    matrix_set(matrix_world, _state.matrix_world);
+    matrix_set(matrix_view, _state.matrix_view);
+    matrix_set(matrix_projection, _state.matrix_projection);
 }
