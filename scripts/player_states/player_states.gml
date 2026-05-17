@@ -35,7 +35,7 @@ function player_state_conditions(){
 	}
 	
 	//Reset the timer
-	if(state != player_state_jump || state == player_state_dropdash || shield != S_NONE && shield != S_NORMAL)
+	if(state != player_state_jump || state == player_state_dropdash || shield != S_NONE && shield != S_NORMAL && !invincible)
 	{
 		dropdash_timer = 0;
 	}

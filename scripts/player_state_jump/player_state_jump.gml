@@ -1,9 +1,11 @@
 function player_state_jump(){
 	//Reset when grounded
-	if(ground) {
+	if(ground) 
+	{
 		state = player_state_normal;
 		exit;
 	}
+	
 	//Change flags
 	attacking = true;
 	
@@ -24,10 +26,14 @@ function player_state_jump(){
 	}	
 	
 	//execute shield ability
-	if (press_action && character == CHAR_SONIC){
-		if (instance_exists(par_shield)) {
-			with (par_shield) {
-				if (use_allow && shield_state == 0) {
+	if(press_action && character == CHAR_SONIC)
+	{
+		if(instance_exists(par_shield)) 
+		{
+			with(par_shield) 
+			{
+				if(use_allow && shield_state == 0) 
+				{
 					script_execute(jump) 
 				}
 			}
@@ -43,14 +49,14 @@ function player_state_jump(){
 		exit;
 	}
 	
-	//If global value for dropdash is diabled don't execute
-	if(global.use_dropdash) {
 	
+	
+	if(global.use_dropdash) 
+	{
 		//Add dropdash timer
 		if(character == CHAR_SONIC)
 		{
-			if(press_action && dropdash_timer < 1 ||
-			hold_action && dropdash_timer != 0)
+			if(press_action && dropdash_timer < 1 || hold_action && dropdash_timer != 0)
 			{
 				dropdash_timer++;
 			}
