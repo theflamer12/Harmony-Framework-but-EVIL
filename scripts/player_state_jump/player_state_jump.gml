@@ -49,12 +49,13 @@ function player_state_jump(){
 		//Add dropdash timer
 		if(character == CHAR_SONIC)
 		{
-			if(press_action && dropdash_timer < 1 && y_speed > -jump_release ||
+			if(press_action && dropdash_timer < 1 ||
 			hold_action && dropdash_timer != 0)
 			{
 				dropdash_timer++;
 			}
 		}
+		
 		//Trigger the dropdash state
 		if(dropdash_timer >= 8 && state != player_state_dropdash)
 		{
@@ -66,7 +67,7 @@ function player_state_jump(){
 	}
 	
 	//Trigger fly
-	if(press_action && character == CHAR_TAILS && y_speed > -jump_release)
+	if(press_action && character == CHAR_TAILS)
 	{
 		tails_timer = 480;
 		y_accel = 0.03125;

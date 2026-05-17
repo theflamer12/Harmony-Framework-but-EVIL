@@ -14,12 +14,17 @@ function player_handle_physics(){
 		slope_down : [0.3125, 0.3125, 0.3125]
 	};
 	
-	if (super){
+	if (super)
+	{
 		physics_table.accel = [0.1875, 0.09375, 0.09375]
 		physics_table.deaccel = [1,0.75,0.75]
 		physics_table.grav = [0.21875, 0.21875, 0.21875]
 		physics_table.top_speed = [10.0, 8, 8]
 		physics_table.jump_strength = [8, 8, 6.0]	
+		
+		// Make sure that this is off
+		speed_shoes_flag = false;
+		speed_shoes = 0;
 	}
 	
 	//Assign the physics value
